@@ -1,0 +1,32 @@
+aid: nominatim
+name: Nominatim
+description: "Provides worldwide forward / reverse geocoding"
+url: https://nominatim.org/release-docs/latest/api/Overview/
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Geocoding"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Geocoding
+  - Public APIs
+apis:
+  - name: Nominatim
+    description: "Provides worldwide forward / reverse geocoding"
+    humanURL: https://nominatim.org/release-docs/latest/api/Overview/
+    baseURL: https://nominatim.org/release-docs/latest/api/Overview/
+    tags:
+      - Geocoding
+    properties:
+      - type: Documentation
+        url: https://nominatim.org/release-docs/latest/api/Overview/
+common:
+  - type: Website
+    url: https://nominatim.org/release-docs/latest/api/Overview/
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
