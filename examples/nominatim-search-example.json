@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://nominatim.openstreetmap.org/search?q=135+pilkington+avenue%2C+birmingham&format=jsonv2&addressdetails=1&limit=5",
+    "headers": {
+      "User-Agent": "my-geocoding-app/1.0 (contact@example.com)",
+      "Accept": "application/json"
+    }
+  },
+  "response": [
+    {
+      "place_id": 12345678,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 240109189,
+      "boundingbox": ["52.5487229", "52.5488229", "-1.8160710", "-1.8159710"],
+      "lat": "52.5487429714954",
+      "lon": "-1.81602098644987",
+      "display_name": "135, Pilkington Avenue, Wylde Green, Sutton Coldfield, Birmingham, West Midlands Combined Authority, England, B72 1LH, United Kingdom",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 0.62100895764854,
+      "addresstype": "place",
+      "name": "",
+      "address": {
+        "house_number": "135",
+        "road": "Pilkington Avenue",
+        "suburb": "Wylde Green",
+        "town": "Sutton Coldfield",
+        "city": "Birmingham",
+        "county": "West Midlands Combined Authority",
+        "state": "England",
+        "postcode": "B72 1LH",
+        "country": "United Kingdom",
+        "country_code": "gb"
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+apiVersion: naftiko/v1
+kind: Capability
+metadata:
+  name: nominatim-geocoding
+  title: Forward And Reverse Geocoding (Nominatim)
+  description: |
+    Translate human-readable addresses into coordinates and back using
+    Nominatim against either the public OSMF instance or a self-hosted
+    Nominatim deployment. Honors the OSMF usage policy and emits a meaningful
+    User-Agent.
+  tags:
+    - Geocoding
+    - OpenStreetMap
+    - Maps
+    - LocationServices
+spec:
+  inputs:
+    - name: query
+      description: Free-form address or place name to forward-geocode.
+      required: false
+      schema:
+        type: string
+    - name: latitude
+      description: Latitude (WGS84) to reverse-geocode.
+      required: false
+      schema:
+        type: number
+    - name: longitude
+      description: Longitude (WGS84) to reverse-geocode.
+      required: false
+      schema:
+        type: number
+    - name: countryCodes
+      description: ISO 3166-1 alpha-2 codes to restrict forward geocoding to.
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+    - name: language
+      description: Preferred result language (browser-style language tag).
+      required: false
+      schema:
+        type: string
+  outputs:
+    - name: places
+      description: One or more matched Nominatim places.
+      schema:
+        $ref: '../openapi/nominatim-openapi.yml#/components/schemas/Place'
+  steps:
+    - id: choose-endpoint
+      description: |
+        If `query` is supplied, call /search. If `latitude` and `longitude`
+        are supplied, call /reverse. Reject if both or neither.
+    - id: enforce-usage-policy
+      description: |
+        Throttle outbound traffic to <= 1 request/second across all callers
+        when targeting nominatim.openstreetmap.org. Attach a User-Agent that
+        identifies the calling application and a contact email.
+    - id: parse
+      description: Normalize Nominatim's place object into the capability output schema.
+  policies:
+    - kind: rate-limit
+      target: nominatim.openstreetmap.org
+      rps: 1
+    - kind: header
+      name: User-Agent
+      required: true
+    - kind: attribution
+      text: "© OpenStreetMap contributors"
+      url: https://www.openstreetmap.org/copyright
+  links:
+    - rel: openapi
+      href: ../openapi/nominatim-openapi.yml
+    - rel: rate-limits
+      href: ../rate-limits/nominatim-rate-limits.yml

@@ -1,0 +1,72 @@
+apiVersion: api-commons/plans/0.1
+kind: Plans
+metadata:
+  providerId: nominatim
+  providerName: Nominatim
+  description: |
+    Nominatim is BSD-2-Clause licensed software and the OSMF runs a free public
+    instance at https://nominatim.openstreetmap.org. There is no commercial
+    plan ladder for the upstream project; capacity is governed by the OSMF
+    usage policy. Commercial hosted Nominatim is sold by third-party operators
+    (MapTiler, LocationIQ, Geocode Earth, etc.) — those are noted as context
+    only and have their own pricing pages.
+  termsOfService: https://operations.osmfoundation.org/policies/nominatim/
+  attribution:
+    text: "© OpenStreetMap contributors"
+    url: https://www.openstreetmap.org/copyright
+  modified: '2026-05-29'
+plans:
+  - id: public-osmf
+    name: OSMF Public Nominatim
+    type: free
+    price:
+      amount: 0
+      currency: USD
+      unit: month
+    constraints:
+      - "Hard ceiling: no more than 1 request per second across all callers"
+      - "Must send a meaningful HTTP User-Agent or HTTP Referer"
+      - "No heavy use; no bulk geocoding; no batch jobs"
+      - "Cache results aggressively"
+      - "Display attribution: © OpenStreetMap contributors"
+    suitableFor:
+      - Low-volume end-user-triggered searches
+      - Hobby / personal projects
+      - Open data and civic-tech experiments
+    notSuitableFor:
+      - Production high-volume geocoding workloads
+      - Auto-complete / type-ahead with one request per keystroke
+      - Bulk address normalisation jobs
+    contact: https://operations.osmfoundation.org/policies/nominatim/
+  - id: self-hosted
+    name: Self-Hosted Nominatim
+    type: foss
+    price:
+      amount: 0
+      currency: USD
+      unit: month
+      notes: Software is free; you pay the infrastructure cost (typically a 64-128 GB RAM box plus storage).
+    constraints:
+      - "Requires importing a planet.osm.pbf dump (multi-day import)"
+      - "Hardware sizing dictated by world coverage (~1.5 TB disk recommended)"
+      - "You own all rate limiting and capacity planning"
+    suitableFor:
+      - Production workloads
+      - Workloads bound by data residency or privacy requirements
+      - Custom-tuned geocoding stacks
+    documentation: https://nominatim.org/release-docs/develop/admin/Installation/
+
+context:
+  commercialHostedAlternatives:
+    description: |
+      For teams that need Nominatim semantics without operating the stack,
+      these third-party operators offer hosted Nominatim or Nominatim-compatible
+      APIs under their own commercial pricing. Pricing and SLAs are theirs, not
+      OSMF's.
+    providers:
+      - name: MapTiler Geocoding
+        url: https://www.maptiler.com/cloud/geocoding/
+      - name: LocationIQ
+        url: https://locationiq.com/pricing
+      - name: Geocode Earth
+        url: https://geocode.earth/

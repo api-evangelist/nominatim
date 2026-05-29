@@ -1,0 +1,43 @@
+apiVersion: naftiko/v1
+kind: Capability
+metadata:
+  name: nominatim-address-lookup
+  title: OSM Object Address Lookup
+  description: |
+    Resolve detailed address and metadata for one or more known OSM objects
+    (node/way/relation) by ID. Wraps the Nominatim /lookup endpoint.
+  tags:
+    - Geocoding
+    - OpenStreetMap
+    - Maps
+spec:
+  inputs:
+    - name: osmIds
+      description: List of OSM IDs, each prefixed with type (N|W|R). Max 50.
+      required: true
+      schema:
+        type: array
+        maxItems: 50
+        items:
+          type: string
+          pattern: '^[NWR][0-9]+$'
+    - name: language
+      required: false
+      schema:
+        type: string
+  outputs:
+    - name: places
+      schema:
+        type: array
+        items:
+          $ref: '../openapi/nominatim-openapi.yml#/components/schemas/Place'
+  policies:
+    - kind: rate-limit
+      target: nominatim.openstreetmap.org
+      rps: 1
+    - kind: max-batch
+      param: osmIds
+      maxItems: 50
+  links:
+    - rel: openapi
+      href: ../openapi/nominatim-openapi.yml

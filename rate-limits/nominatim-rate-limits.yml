@@ -1,0 +1,56 @@
+apiVersion: api-commons/rate-limits/0.1
+kind: RateLimits
+metadata:
+  providerId: nominatim
+  providerName: Nominatim
+  description: |
+    Rate limits for the public OSMF Nominatim instance at
+    https://nominatim.openstreetmap.org, as published in the OSMF Nominatim
+    Usage Policy. Self-hosted deployments are not subject to these limits.
+  source: https://operations.osmfoundation.org/policies/nominatim/
+  effectiveDate: '2026-05-29'
+
+policies:
+  - id: public-osmf-hard-limit
+    name: OSMF Public Nominatim Hard Limit
+    target:
+      host: nominatim.openstreetmap.org
+      scope: all-endpoints
+    limits:
+      - dimension: requests-per-second
+        value: 1
+        notes: |
+          Absolute hard ceiling. Applies to the sum of requests from all users
+          of your application or website, not per end-user.
+    requirements:
+      - id: user-agent
+        description: |
+          HTTP requests must include a valid User-Agent (or HTTP Referer) that
+          identifies the calling application. Generic library defaults (e.g.
+          'python-requests/x.x') are explicitly disallowed.
+      - id: attribution
+        description: |
+          Display attribution appropriate for your medium —
+          "© OpenStreetMap contributors" linking to
+          https://www.openstreetmap.org/copyright.
+      - id: caching
+        description: Cache results aggressively to avoid hitting Nominatim for the same query repeatedly.
+    prohibitedUseCases:
+      - Bulk geocoding of large address lists
+      - Auto-complete / type-ahead that issues one request per keystroke
+      - Background batch jobs without prior coordination
+      - Systematic harvesting of OSM data via Nominatim (use a planet dump instead)
+    enforcement:
+      - mechanism: ip-block
+        description: Repeated violations trigger HTTP 403 ("Usage limit reached") or full IP blocks.
+      - mechanism: 429
+        description: Excess traffic may be answered with HTTP 429 Too Many Requests.
+    escalation:
+      - If you need more than this allows, run your own Nominatim instance or move to a commercial provider (MapTiler, LocationIQ, Geocode Earth).
+
+selfHosted:
+  description: |
+    Self-hosted Nominatim has no project-mandated rate limit — operators set
+    their own caps based on hardware. Common defaults shipped with deployment
+    examples cap a single client to ~5 req/s and rely on Apache/Nginx
+    `limit_req` for enforcement.

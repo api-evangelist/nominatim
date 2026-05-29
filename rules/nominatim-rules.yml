@@ -1,0 +1,73 @@
+extends: [[spectral:oas, all]]
+documentationUrl: https://nominatim.org/release-docs/develop/api/Overview/
+rules:
+  nominatim-operation-summary-required:
+    description: Every operation must include a Title-Cased summary.
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: summary
+      function: truthy
+  nominatim-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][A-Za-z0-9]*( ([A-Z][A-Za-z0-9]*|Or|And|For|In|On|To|By|Of|The|A|An))*$'
+  nominatim-operation-id-camel:
+    description: operationId must be lowerCamelCase or a single noun (search, reverse, lookup, details, status, deletable, polygons).
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+  nominatim-tags-required:
+    description: Every operation must declare at least one tag.
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+  nominatim-response-200-required:
+    description: Every operation must define a 200 response.
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch].responses
+    then:
+      field: '200'
+      function: truthy
+  nominatim-format-parameter-enum:
+    description: A format query parameter must enumerate Nominatim output formats.
+    severity: warn
+    given: $.paths[*][get].parameters[?(@.name=='format')].schema
+    then:
+      field: enum
+      function: truthy
+  nominatim-license-info:
+    description: API info must declare the BSD-2-Clause license.
+    severity: error
+    given: $.info.license
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: '^BSD-2-Clause$'
+  nominatim-terms-of-service:
+    description: API info must reference the OSMF Nominatim usage policy.
+    severity: warn
+    given: $.info
+    then:
+      field: termsOfService
+      function: pattern
+      functionOptions:
+        match: 'operations\.osmfoundation\.org/policies/nominatim'
+  nominatim-rate-limit-doc:
+    description: Description should mention the OSMF usage policy and 1 req/sec ceiling.
+    severity: info
+    given: $.info.description
+    then:
+      function: pattern
+      functionOptions:
+        match: '(1 request per second|Usage Policy|usage policy)'

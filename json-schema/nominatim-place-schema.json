@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nominatim.org/schemas/place.json",
+  "title": "Place",
+  "description": "A single Nominatim place result as returned by /search, /reverse, and /lookup.",
+  "type": "object",
+  "properties": {
+    "place_id": {
+      "type": "integer",
+      "description": "Internal Nominatim place ID. Not portable across installations."
+    },
+    "licence": {
+      "type": "string",
+      "description": "Licence and attribution text for the returned data."
+    },
+    "osm_type": {
+      "type": "string",
+      "enum": ["node", "way", "relation"]
+    },
+    "osm_id": {
+      "type": "integer"
+    },
+    "boundingbox": {
+      "type": "array",
+      "description": "[min_lat, max_lat, min_lon, max_lon] as strings.",
+      "items": { "type": "string" },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "lat": { "type": "string" },
+    "lon": { "type": "string" },
+    "display_name": { "type": "string" },
+    "class": { "type": "string" },
+    "category": { "type": "string" },
+    "type": { "type": "string" },
+    "place_rank": { "type": "integer" },
+    "importance": { "type": "number" },
+    "addresstype": { "type": "string" },
+    "name": { "type": "string" },
+    "icon": { "type": "string", "format": "uri" },
+    "address": { "$ref": "nominatim-address-schema.json" },
+    "extratags": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "namedetails": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "geojson": {
+      "type": "object",
+      "description": "GeoJSON geometry of the result (when polygon_geojson=1)."
+    }
+  },
+  "required": ["place_id", "osm_type", "osm_id", "lat", "lon", "display_name"]
+}

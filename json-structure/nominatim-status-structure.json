@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/v1",
+  "$id": "https://nominatim.org/structures/status.json",
+  "title": "Status",
+  "description": "Field-level structure of the /status response.",
+  "fields": [
+    { "name": "status", "type": "integer", "required": true, "description": "0 = OK." },
+    { "name": "message", "type": "string", "required": true },
+    { "name": "data_updated", "type": "string", "required": false, "format": "date-time" },
+    { "name": "software_version", "type": "string", "required": false },
+    { "name": "database_version", "type": "string", "required": false }
+  ]
+}

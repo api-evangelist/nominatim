@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://nominatim.openstreetmap.org/reverse?lat=48.8584&lon=2.2945&format=jsonv2&addressdetails=1&zoom=18",
+    "headers": {
+      "User-Agent": "my-geocoding-app/1.0 (contact@example.com)",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "place_id": 78901234,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "way",
+    "osm_id": 5013364,
+    "lat": "48.8582599",
+    "lon": "2.2945006",
+    "place_rank": 30,
+    "category": "tourism",
+    "type": "attraction",
+    "importance": 0.79658,
+    "addresstype": "tourism",
+    "name": "Tour Eiffel",
+    "display_name": "Tour Eiffel, 5, Avenue Anatole France, Quartier du Gros-Caillou, 7e Arrondissement, Paris, Île-de-France, France métropolitaine, 75007, France",
+    "address": {
+      "tourism": "Tour Eiffel",
+      "house_number": "5",
+      "road": "Avenue Anatole France",
+      "neighbourhood": "Quartier du Gros-Caillou",
+      "suburb": "7e Arrondissement",
+      "city": "Paris",
+      "state": "Île-de-France",
+      "postcode": "75007",
+      "country": "France",
+      "country_code": "fr"
+    },
+    "boundingbox": ["48.8574753", "48.8590453", "2.2933813", "2.2956195"]
+  }
+}

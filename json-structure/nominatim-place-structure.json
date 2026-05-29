@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/v1",
+  "$id": "https://nominatim.org/structures/place.json",
+  "title": "Place",
+  "description": "Field-level structure of a Nominatim Place result.",
+  "fields": [
+    { "name": "place_id", "type": "integer", "required": true, "description": "Internal database identifier." },
+    { "name": "licence", "type": "string", "required": false, "description": "Attribution and licence text." },
+    { "name": "osm_type", "type": "string", "required": true, "enum": ["node", "way", "relation"] },
+    { "name": "osm_id", "type": "integer", "required": true },
+    { "name": "boundingbox", "type": "array<string>", "required": false, "cardinality": "4" },
+    { "name": "lat", "type": "string", "required": true },
+    { "name": "lon", "type": "string", "required": true },
+    { "name": "display_name", "type": "string", "required": true, "description": "Full comma-separated address." },
+    { "name": "class", "type": "string", "required": false, "description": "Main OSM tag key (json format)." },
+    { "name": "category", "type": "string", "required": false, "description": "Main OSM tag key (jsonv2 format)." },
+    { "name": "type", "type": "string", "required": false, "description": "Main OSM tag value." },
+    { "name": "place_rank", "type": "integer", "required": false },
+    { "name": "importance", "type": "number", "required": false },
+    { "name": "addresstype", "type": "string", "required": false },
+    { "name": "name", "type": "string", "required": false },
+    { "name": "icon", "type": "string", "required": false, "format": "uri" },
+    { "name": "address", "type": "object", "ref": "nominatim-address-structure.json" },
+    { "name": "extratags", "type": "map<string,string>", "required": false },
+    { "name": "namedetails", "type": "map<string,string>", "required": false },
+    { "name": "geojson", "type": "object", "required": false }
+  ]
+}

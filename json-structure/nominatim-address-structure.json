@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/draft/v1",
+  "$id": "https://nominatim.org/structures/address.json",
+  "title": "Address",
+  "description": "Field-level structure of the Nominatim address breakdown.",
+  "fields": [
+    { "name": "house_number", "type": "string", "required": false },
+    { "name": "road", "type": "string", "required": false },
+    { "name": "neighbourhood", "type": "string", "required": false },
+    { "name": "suburb", "type": "string", "required": false },
+    { "name": "hamlet", "type": "string", "required": false },
+    { "name": "village", "type": "string", "required": false },
+    { "name": "town", "type": "string", "required": false },
+    { "name": "city", "type": "string", "required": false },
+    { "name": "municipality", "type": "string", "required": false },
+    { "name": "county", "type": "string", "required": false },
+    { "name": "state_district", "type": "string", "required": false },
+    { "name": "state", "type": "string", "required": false },
+    { "name": "region", "type": "string", "required": false },
+    { "name": "postcode", "type": "string", "required": false },
+    { "name": "country", "type": "string", "required": false },
+    { "name": "country_code", "type": "string", "required": false, "description": "ISO 3166-1 alpha-2 (lowercase)." }
+  ]
+}

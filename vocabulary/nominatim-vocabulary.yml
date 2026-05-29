@@ -1,0 +1,82 @@
+name: Nominatim Vocabulary
+description: |
+  Controlled vocabulary covering the domain concepts, operational dimensions,
+  and capability dimensions of the Nominatim geocoding service.
+version: '0.1'
+modified: '2026-05-29'
+
+concepts:
+  - term: Geocoding
+    definition: Converting a human-readable address or place name into geographic coordinates.
+  - term: ReverseGeocoding
+    definition: Converting geographic coordinates into a human-readable address or place description.
+  - term: AddressLookup
+    definition: Resolving structured address details for a known OSM object by its identifier.
+  - term: PlaceDetails
+    definition: Verbose internal details (admin level, importance, hierarchy) for a single Nominatim place.
+  - term: ServiceStatus
+    definition: Health and freshness reporting for a Nominatim deployment.
+  - term: ImportanceRank
+    definition: Computed score (0..1) Nominatim uses to order candidate results for a query.
+  - term: PlaceRank
+    definition: Coarse ranking from country (small number) down to building (large number) capturing administrative scale.
+  - term: BoundingBox
+    definition: Four-corner [min_lat, max_lat, min_lon, max_lon] rectangle for a place.
+  - term: AdminLevel
+    definition: OSM administrative hierarchy level (e.g. country=2, state=4, city=8).
+
+osmObjectTypes:
+  - term: node
+    definition: A single OSM point feature.
+  - term: way
+    definition: An ordered list of nodes forming a line or area in OSM.
+  - term: relation
+    definition: A grouping of OSM objects (often used for administrative boundaries and multipolygons).
+
+outputFormats:
+  - term: json
+    definition: Legacy Nominatim JSON format (uses `class`).
+  - term: jsonv2
+    definition: Default Nominatim JSON format (renames `class` to `category`, adds `place_rank`).
+  - term: geojson
+    definition: RFC 7946 GeoJSON FeatureCollection.
+  - term: geocodejson
+    definition: GeocodeJSON 0.1.0 specification format.
+  - term: xml
+    definition: XML format, default for /reverse.
+
+featureLayers:
+  - term: address
+    definition: Streets, postcodes, administrative units.
+  - term: poi
+    definition: Points of interest (amenities, attractions, shops).
+  - term: railway
+    definition: Railway-related features.
+  - term: natural
+    definition: Natural features (rivers, peaks, forests).
+  - term: manmade
+    definition: Manmade structures.
+
+featureTypes:
+  - country
+  - state
+  - city
+  - settlement
+
+policyTerms:
+  - term: UsagePolicy
+    definition: OSMF Nominatim Usage Policy at https://operations.osmfoundation.org/policies/nominatim/.
+  - term: UserAgent
+    definition: Required HTTP header identifying your application; generic library defaults are not allowed.
+  - term: Attribution
+    definition: "Display \"© OpenStreetMap contributors\" linking to https://www.openstreetmap.org/copyright."
+  - term: ODbL
+    definition: Open Database Licence 1.0 governing OSM data.
+
+deploymentModes:
+  - term: PublicHosted
+    definition: nominatim.openstreetmap.org operated by the OpenStreetMap Foundation.
+  - term: SelfHosted
+    definition: Self-installed Nominatim from osm-search/Nominatim.
+  - term: CommercialHosted
+    definition: Hosted Nominatim from a paid provider (e.g. MapTiler, LocationIQ, Geocode Earth).

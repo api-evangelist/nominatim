@@ -1,0 +1,58 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "geo": "http://www.opengis.net/ont/geosparql#",
+    "osm": "https://wiki.openstreetmap.org/wiki/",
+    "nominatim": "https://nominatim.org/schemas/",
+
+    "Place": "schema:Place",
+    "Address": "schema:PostalAddress",
+
+    "place_id": "nominatim:place_id",
+    "osm_type": "nominatim:osm_type",
+    "osm_id": "nominatim:osm_id",
+    "lat": {
+      "@id": "schema:latitude",
+      "@type": "schema:Number"
+    },
+    "lon": {
+      "@id": "schema:longitude",
+      "@type": "schema:Number"
+    },
+    "display_name": "schema:name",
+    "name": "schema:name",
+    "class": "nominatim:class",
+    "category": "nominatim:category",
+    "type": "nominatim:type",
+    "place_rank": "nominatim:place_rank",
+    "importance": "nominatim:importance",
+    "addresstype": "nominatim:addresstype",
+    "boundingbox": "nominatim:boundingbox",
+    "icon": "schema:image",
+    "licence": "schema:license",
+
+    "address": "schema:address",
+    "house_number": "schema:streetAddress",
+    "road": "nominatim:road",
+    "neighbourhood": "nominatim:neighbourhood",
+    "suburb": "nominatim:suburb",
+    "city": "schema:addressLocality",
+    "town": "nominatim:town",
+    "village": "nominatim:village",
+    "municipality": "nominatim:municipality",
+    "county": "nominatim:county",
+    "state_district": "nominatim:state_district",
+    "state": "schema:addressRegion",
+    "postcode": "schema:postalCode",
+    "country": "schema:addressCountry",
+    "country_code": "nominatim:country_code",
+
+    "extratags": "nominatim:extratags",
+    "namedetails": "nominatim:namedetails",
+    "geojson": {
+      "@id": "geo:asGeoJSON",
+      "@type": "@json"
+    }
+  }
+}

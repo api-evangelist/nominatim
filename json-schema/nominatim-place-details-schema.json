@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nominatim.org/schemas/place-details.json",
+  "title": "PlaceDetails",
+  "description": "Verbose internal details for a single place, returned by /details. Intended for debugging.",
+  "type": "object",
+  "properties": {
+    "place_id": { "type": "integer" },
+    "parent_place_id": { "type": "integer" },
+    "osm_type": { "type": "string" },
+    "osm_id": { "type": "integer" },
+    "category": { "type": "string" },
+    "type": { "type": "string" },
+    "admin_level": { "type": "integer" },
+    "localname": { "type": "string" },
+    "names": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "addresstags": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "extratags": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "calculated_postcode": { "type": "string" },
+    "country_code": { "type": "string" },
+    "indexed_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "importance": { "type": "number" },
+    "calculated_importance": { "type": "number" },
+    "rank_address": { "type": "integer" },
+    "rank_search": { "type": "integer" },
+    "isarea": { "type": "boolean" },
+    "centroid": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "coordinates": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "geometry": { "type": "object" },
+    "address": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "keywords": { "type": "object" },
+    "hierarchy": { "type": "object" },
+    "linked_places": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  },
+  "required": ["place_id", "osm_type", "osm_id"]
+}

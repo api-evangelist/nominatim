@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://nominatim.openstreetmap.org/details?osmtype=R&osmid=146656&format=json&addressdetails=1&hierarchy=0&group_hierarchy=1",
+    "headers": {
+      "User-Agent": "my-geocoding-app/1.0 (contact@example.com)",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "place_id": 257803017,
+    "parent_place_id": 64882429,
+    "osm_type": "R",
+    "osm_id": 146656,
+    "category": "boundary",
+    "type": "administrative",
+    "admin_level": 8,
+    "localname": "Manchester",
+    "names": {
+      "name": "Manchester",
+      "name:de": "Manchester",
+      "name:fr": "Manchester"
+    },
+    "addresstags": {},
+    "calculated_postcode": "M1",
+    "country_code": "gb",
+    "indexed_date": "2026-05-15T12:34:56+00:00",
+    "importance": 0.71614935,
+    "calculated_importance": 0.71614935,
+    "rank_address": 16,
+    "rank_search": 16,
+    "isarea": true,
+    "centroid": {
+      "type": "Point",
+      "coordinates": [-2.2447149, 53.4791301]
+    }
+  }
+}

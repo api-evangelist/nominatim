@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nominatim.org/schemas/status.json",
+  "title": "Status",
+  "description": "Service and database status report from the Nominatim /status endpoint.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "description": "Numeric status code. 0 means OK."
+    },
+    "message": { "type": "string" },
+    "data_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the last successful OSM data import or replication."
+    },
+    "software_version": { "type": "string" },
+    "database_version": { "type": "string" }
+  },
+  "required": ["status", "message"]
+}

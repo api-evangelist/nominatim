@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nominatim.org/schemas/address.json",
+  "title": "Address",
+  "description": "Structured address breakdown returned when addressdetails=1.",
+  "type": "object",
+  "properties": {
+    "house_number": { "type": "string" },
+    "road": { "type": "string" },
+    "neighbourhood": { "type": "string" },
+    "suburb": { "type": "string" },
+    "hamlet": { "type": "string" },
+    "village": { "type": "string" },
+    "town": { "type": "string" },
+    "city": { "type": "string" },
+    "municipality": { "type": "string" },
+    "county": { "type": "string" },
+    "state_district": { "type": "string" },
+    "state": { "type": "string" },
+    "region": { "type": "string" },
+    "postcode": { "type": "string" },
+    "country": { "type": "string" },
+    "country_code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code, lowercase."
+    }
+  },
+  "additionalProperties": { "type": "string" }
+}
