@@ -1,0 +1,592 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nominatim API",
+    "version": "4.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search OSM Objects By Name Or Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Free-form query string. Cannot be combined with structured query parameters."
+              },
+              {
+                "name": "amenity",
+                "value": "",
+                "type": "query",
+                "description": "Name or type of point of interest."
+              },
+              {
+                "name": "street",
+                "value": "",
+                "type": "query",
+                "description": "House number and street name."
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "county",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "postalcode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "json_callback",
+                "value": "",
+                "type": "query",
+                "description": "Wrap JSON output in a JSONP callback."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of returned results."
+              },
+              {
+                "name": "addressdetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a breakdown of the address into elements."
+              },
+              {
+                "name": "extratags",
+                "value": "",
+                "type": "query",
+                "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+              },
+              {
+                "name": "namedetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a full list of names for the result."
+              },
+              {
+                "name": "accept-language",
+                "value": "",
+                "type": "query",
+                "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+              },
+              {
+                "name": "countrycodes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of ISO 3166-1 alpha-2 country codes to limit results to."
+              },
+              {
+                "name": "exclude_place_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of place IDs to exclude from the result set."
+              },
+              {
+                "name": "viewbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box `x1,y1,x2,y2` (longitudes and latitudes) used to bias\nresults toward a geographic area.\n"
+              },
+              {
+                "name": "bounded",
+                "value": "",
+                "type": "query",
+                "description": "When set, restrict results strictly to the viewbox."
+              },
+              {
+                "name": "polygon_geojson",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as GeoJSON."
+              },
+              {
+                "name": "polygon_kml",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as KML."
+              },
+              {
+                "name": "polygon_svg",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as SVG."
+              },
+              {
+                "name": "polygon_text",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as WKT."
+              },
+              {
+                "name": "polygon_threshold",
+                "value": "",
+                "type": "query",
+                "description": "Simplification tolerance for polygon output, in degrees."
+              },
+              {
+                "name": "dedupe",
+                "value": "",
+                "type": "query",
+                "description": "Remove duplicate hits from the result set."
+              },
+              {
+                "name": "layer",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to one or more feature layers. Comma-separated list of\n`address`, `poi`, `railway`, `natural`, `manmade`.\n"
+              },
+              {
+                "name": "featureType",
+                "value": "",
+                "type": "query",
+                "description": "Restrict search results to a single feature type."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "Return verbose HTML output containing internal debugging information."
+              }
+            ]
+          },
+          "docs": "Forward-geocode a free-form or structured query and return matching\nOSM objects. Use the free-form `q` parameter or one of the structured\nparameters (`amenity`, `street`, `city`, `county`, `state`, `country`,\n`postalcode`) — the two query styles cannot be combined.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reverse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reverse Geocode A Coordinate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/reverse",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the coordinate to reverse geocode (WGS84)."
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the coordinate to reverse geocode (WGS84)."
+              },
+              {
+                "name": "zoom",
+                "value": "",
+                "type": "query",
+                "description": "Level of administrative detail required. 3=country, 5=state, 8=county,\n10=city, 12=town/borough, 13=village/suburb, 14=neighbourhood, 15=any\nsettlement, 16=major streets, 17=major and minor streets, 18=building.\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "json_callback",
+                "value": "",
+                "type": "query",
+                "description": "Wrap JSON output in a JSONP callback."
+              },
+              {
+                "name": "addressdetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a breakdown of the address into elements."
+              },
+              {
+                "name": "extratags",
+                "value": "",
+                "type": "query",
+                "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+              },
+              {
+                "name": "namedetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a full list of names for the result."
+              },
+              {
+                "name": "accept-language",
+                "value": "",
+                "type": "query",
+                "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+              },
+              {
+                "name": "layer",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to one or more feature layers. Comma-separated list of\n`address`, `poi`, `railway`, `natural`, `manmade`.\n"
+              },
+              {
+                "name": "polygon_geojson",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as GeoJSON."
+              },
+              {
+                "name": "polygon_kml",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as KML."
+              },
+              {
+                "name": "polygon_svg",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as SVG."
+              },
+              {
+                "name": "polygon_text",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as WKT."
+              },
+              {
+                "name": "polygon_threshold",
+                "value": "",
+                "type": "query",
+                "description": "Simplification tolerance for polygon output, in degrees."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "Return verbose HTML output containing internal debugging information."
+              }
+            ]
+          },
+          "docs": "Find the closest OSM object to a latitude/longitude pair and return its\naddress information. The result is the closest suitable feature for the\nrequested zoom level rather than a literal address for the exact point.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look Up Address Details For OSM Objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/lookup",
+            "params": [
+              {
+                "name": "osm_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of OSM IDs each prefixed with type\n(N=node, W=way, R=relation). Maximum 50 IDs per request.\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "json_callback",
+                "value": "",
+                "type": "query",
+                "description": "Wrap JSON output in a JSONP callback."
+              },
+              {
+                "name": "addressdetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a breakdown of the address into elements."
+              },
+              {
+                "name": "extratags",
+                "value": "",
+                "type": "query",
+                "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+              },
+              {
+                "name": "namedetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a full list of names for the result."
+              },
+              {
+                "name": "accept-language",
+                "value": "",
+                "type": "query",
+                "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+              },
+              {
+                "name": "polygon_geojson",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as GeoJSON."
+              },
+              {
+                "name": "polygon_kml",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as KML."
+              },
+              {
+                "name": "polygon_svg",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as SVG."
+              },
+              {
+                "name": "polygon_text",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as WKT."
+              },
+              {
+                "name": "polygon_threshold",
+                "value": "",
+                "type": "query",
+                "description": "Simplification tolerance for polygon output, in degrees."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "Return verbose HTML output containing internal debugging information."
+              }
+            ]
+          },
+          "docs": "Look up address details for one or more OSM objects identified by their\nOSM type and ID. Up to 50 IDs may be passed per request.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show Internal Place Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/details",
+            "params": [
+              {
+                "name": "osmtype",
+                "value": "",
+                "type": "query",
+                "description": "OSM object type (N=node, W=way, R=relation)."
+              },
+              {
+                "name": "osmid",
+                "value": "",
+                "type": "query",
+                "description": "OSM object ID."
+              },
+              {
+                "name": "class",
+                "value": "",
+                "type": "query",
+                "description": "Optional OSM tag key used to disambiguate between multiple places\noriginating from the same OSM object.\n"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Internal Nominatim place identifier. Not portable across Nominatim\ninstances.\n"
+              },
+              {
+                "name": "json_callback",
+                "value": "",
+                "type": "query",
+                "description": "Wrap JSON output in a JSONP callback."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "addressdetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a breakdown of the address into elements."
+              },
+              {
+                "name": "keywords",
+                "value": "",
+                "type": "query",
+                "description": "Include name and address keywords used for indexing."
+              },
+              {
+                "name": "linkedplaces",
+                "value": "",
+                "type": "query",
+                "description": "Include details for linked places."
+              },
+              {
+                "name": "hierarchy",
+                "value": "",
+                "type": "query",
+                "description": "Include dependent POIs and addresses."
+              },
+              {
+                "name": "group_hierarchy",
+                "value": "",
+                "type": "query",
+                "description": "Group the hierarchy output by element type."
+              },
+              {
+                "name": "polygon_geojson",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as GeoJSON."
+              },
+              {
+                "name": "accept-language",
+                "value": "",
+                "type": "query",
+                "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+              }
+            ]
+          },
+          "docs": "Show internal details for an object. Intended for debugging — the\nendpoint is not part of the stable API surface and the place_id is not\nportable across Nominatim installations.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Report Service And Database Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/status",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Report on the state of the Nominatim service and its underlying\ndatabase. Useful for health checks.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Deletable",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Objects Deleted From OSM But Retained In Nominatim",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/deletable"
+          },
+          "docs": "List OSM objects that have been deleted upstream in OpenStreetMap but\nare still present in the Nominatim database. Used for data quality\nmonitoring.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Polygons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Problematic Polygon Geometries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/polygons"
+          },
+          "docs": "List polygons whose geometries the Nominatim importer flagged as\nbroken or otherwise problematic. Used for data quality monitoring.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

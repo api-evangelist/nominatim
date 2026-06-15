@@ -1,0 +1,2157 @@
+{
+  "item": [
+    {
+      "id": "55cd4d2d-5328-4a83-b024-6909d4f23a9a",
+      "name": "Search",
+      "description": {
+        "content": "Forward geocoding — search OSM objects by name or address.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f9d094e-a2ae-46e1-8171-a3a6954c2de3",
+          "name": "Search OSM Objects By Name Or Address",
+          "request": {
+            "name": "Search OSM Objects By Name Or Address",
+            "description": {
+              "content": "Forward-geocode a free-form or structured query and return matching\nOSM objects. Use the free-form `q` parameter or one of the structured\nparameters (`amenity`, `street`, `city`, `county`, `state`, `country`,\n`postalcode`) — the two query styles cannot be combined.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Free-form query string. Cannot be combined with structured query parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "amenity",
+                  "value": "<string>",
+                  "description": "Name or type of point of interest."
+                },
+                {
+                  "disabled": false,
+                  "key": "street",
+                  "value": "<string>",
+                  "description": "House number and street name."
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "county",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "postalcode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "jsonv2",
+                  "description": "Output format."
+                },
+                {
+                  "disabled": false,
+                  "key": "json_callback",
+                  "value": "<string>",
+                  "description": "Wrap JSON output in a JSONP callback."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of returned results."
+                },
+                {
+                  "disabled": false,
+                  "key": "addressdetails",
+                  "value": "0",
+                  "description": "Include a breakdown of the address into elements."
+                },
+                {
+                  "disabled": false,
+                  "key": "extratags",
+                  "value": "0",
+                  "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+                },
+                {
+                  "disabled": false,
+                  "key": "namedetails",
+                  "value": "0",
+                  "description": "Include a full list of names for the result."
+                },
+                {
+                  "disabled": false,
+                  "key": "accept-language",
+                  "value": "<string>",
+                  "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "countrycodes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of ISO 3166-1 alpha-2 country codes to limit results to."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_place_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of place IDs to exclude from the result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "viewbox",
+                  "value": "<string>",
+                  "description": "Bounding box `x1,y1,x2,y2` (longitudes and latitudes) used to bias\nresults toward a geographic area.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "bounded",
+                  "value": "0",
+                  "description": "When set, restrict results strictly to the viewbox."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_geojson",
+                  "value": "0",
+                  "description": "Output geometry as GeoJSON."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_kml",
+                  "value": "0",
+                  "description": "Output geometry as KML."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_svg",
+                  "value": "0",
+                  "description": "Output geometry as SVG."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_text",
+                  "value": "0",
+                  "description": "Output geometry as WKT."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_threshold",
+                  "value": "0",
+                  "description": "Simplification tolerance for polygon output, in degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "dedupe",
+                  "value": "1",
+                  "description": "Remove duplicate hits from the result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "layer",
+                  "value": "<string>",
+                  "description": "Restrict results to one or more feature layers. Comma-separated list of\n`address`, `poi`, `railway`, `natural`, `manmade`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureType",
+                  "value": "<string>",
+                  "description": "Restrict search results to a single feature type."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "debug",
+                  "value": "0",
+                  "description": "Return verbose HTML output containing internal debugging information."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ba78713-d872-43d2-a75d-784ee7e41c33",
+              "name": "A list of matching places.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "135 pilkington avenue, birmingham"
+                    },
+                    {
+                      "key": "amenity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "street",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "county",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countrycodes",
+                      "value": "us,ca,mx"
+                    },
+                    {
+                      "key": "exclude_place_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewbox",
+                      "value": "-180,-90,180,90"
+                    },
+                    {
+                      "key": "bounded",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "dedupe",
+                      "value": "1"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "address,poi"
+                    },
+                    {
+                      "key": "featureType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"place_id\": 4851,\n    \"licence\": \"Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright\",\n    \"osm_type\": \"node\",\n    \"osm_id\": 5160,\n    \"boundingbox\": [\n      \"string\",\n      \"string\",\n      \"string\",\n      \"string\"\n    ],\n    \"lat\": \"string\",\n    \"lon\": \"string\",\n    \"display_name\": \"string\",\n    \"class\": \"string\",\n    \"category\": \"string\",\n    \"type\": \"string\",\n    \"place_rank\": 2156,\n    \"importance\": 8298.563124934692,\n    \"addresstype\": \"string\",\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"address\": {\n      \"house_number\": \"string\",\n      \"road\": \"string\",\n      \"neighbourhood\": \"string\",\n      \"suburb\": \"string\",\n      \"city\": \"string\",\n      \"town\": \"string\",\n      \"village\": \"string\",\n      \"municipality\": \"string\",\n      \"county\": \"string\",\n      \"state_district\": \"string\",\n      \"state\": \"string\",\n      \"postcode\": \"string\",\n      \"country\": \"string\",\n      \"country_code\": \"string\"\n    },\n    \"extratags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"namedetails\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"geojson\": {}\n  },\n  {\n    \"place_id\": 7727,\n    \"licence\": \"Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright\",\n    \"osm_type\": \"relation\",\n    \"osm_id\": 761,\n    \"boundingbox\": [\n      \"string\",\n      \"string\",\n      \"string\",\n      \"string\"\n    ],\n    \"lat\": \"string\",\n    \"lon\": \"string\",\n    \"display_name\": \"string\",\n    \"class\": \"string\",\n    \"category\": \"string\",\n    \"type\": \"string\",\n    \"place_rank\": 8813,\n    \"importance\": 1122.161378401324,\n    \"addresstype\": \"string\",\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"address\": {\n      \"house_number\": \"string\",\n      \"road\": \"string\",\n      \"neighbourhood\": \"string\",\n      \"suburb\": \"string\",\n      \"city\": \"string\",\n      \"town\": \"string\",\n      \"village\": \"string\",\n      \"municipality\": \"string\",\n      \"county\": \"string\",\n      \"state_district\": \"string\",\n      \"state\": \"string\",\n      \"postcode\": \"string\",\n      \"country\": \"string\",\n      \"country_code\": \"string\",\n      \"key_0\": \"string\"\n    },\n    \"extratags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"namedetails\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"geojson\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c31ba06-4803-4fc7-91eb-feeb8aecfe96",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "135 pilkington avenue, birmingham"
+                    },
+                    {
+                      "key": "amenity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "street",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "county",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countrycodes",
+                      "value": "us,ca,mx"
+                    },
+                    {
+                      "key": "exclude_place_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewbox",
+                      "value": "-180,-90,180,90"
+                    },
+                    {
+                      "key": "bounded",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "dedupe",
+                      "value": "1"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "address,poi"
+                    },
+                    {
+                      "key": "featureType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 5905,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3d672c7-96fc-40a0-81a7-5110d1418216",
+              "name": "Rate limit exceeded. The public Nominatim instance enforces a hard\nceiling of 1 request per second across all your traffic. See\nhttps://operations.osmfoundation.org/policies/nominatim/.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "135 pilkington avenue, birmingham"
+                    },
+                    {
+                      "key": "amenity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "street",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "county",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countrycodes",
+                      "value": "us,ca,mx"
+                    },
+                    {
+                      "key": "exclude_place_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewbox",
+                      "value": "-180,-90,180,90"
+                    },
+                    {
+                      "key": "bounded",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "dedupe",
+                      "value": "1"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "address,poi"
+                    },
+                    {
+                      "key": "featureType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 5905,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3a90483a-61fd-4482-98e8-1cf4addd78c2",
+      "name": "Reverse",
+      "description": {
+        "content": "Reverse geocoding — find the closest OSM object to a coordinate.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "67e8b36b-dffe-473c-8394-bcc14bbbc48b",
+          "name": "Reverse Geocode A Coordinate",
+          "request": {
+            "name": "Reverse Geocode A Coordinate",
+            "description": {
+              "content": "Find the closest OSM object to a latitude/longitude pair and return its\naddress information. The result is the closest suitable feature for the\nrequested zoom level rather than a literal address for the exact point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reverse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the coordinate to reverse geocode (WGS84)."
+                },
+                {
+                  "disabled": false,
+                  "key": "lon",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the coordinate to reverse geocode (WGS84)."
+                },
+                {
+                  "disabled": false,
+                  "key": "zoom",
+                  "value": "18",
+                  "description": "Level of administrative detail required. 3=country, 5=state, 8=county,\n10=city, 12=town/borough, 13=village/suburb, 14=neighbourhood, 15=any\nsettlement, 16=major streets, 17=major and minor streets, 18=building.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "jsonv2",
+                  "description": "Output format."
+                },
+                {
+                  "disabled": false,
+                  "key": "json_callback",
+                  "value": "<string>",
+                  "description": "Wrap JSON output in a JSONP callback."
+                },
+                {
+                  "disabled": false,
+                  "key": "addressdetails",
+                  "value": "0",
+                  "description": "Include a breakdown of the address into elements."
+                },
+                {
+                  "disabled": false,
+                  "key": "extratags",
+                  "value": "0",
+                  "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+                },
+                {
+                  "disabled": false,
+                  "key": "namedetails",
+                  "value": "0",
+                  "description": "Include a full list of names for the result."
+                },
+                {
+                  "disabled": false,
+                  "key": "accept-language",
+                  "value": "<string>",
+                  "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "layer",
+                  "value": "<string>",
+                  "description": "Restrict results to one or more feature layers. Comma-separated list of\n`address`, `poi`, `railway`, `natural`, `manmade`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_geojson",
+                  "value": "0",
+                  "description": "Output geometry as GeoJSON."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_kml",
+                  "value": "0",
+                  "description": "Output geometry as KML."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_svg",
+                  "value": "0",
+                  "description": "Output geometry as SVG."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_text",
+                  "value": "0",
+                  "description": "Output geometry as WKT."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_threshold",
+                  "value": "0",
+                  "description": "Simplification tolerance for polygon output, in degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "debug",
+                  "value": "0",
+                  "description": "Return verbose HTML output containing internal debugging information."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d324332-8db4-42b1-a56a-06adc7d22594",
+              "name": "A single matching place.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "52.5487429714954"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "-1.81602098644987"
+                    },
+                    {
+                      "key": "zoom",
+                      "value": "18"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "address,poi"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"place_id\": 6220,\n  \"licence\": \"Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright\",\n  \"osm_type\": \"node\",\n  \"osm_id\": 248,\n  \"boundingbox\": [\n    \"string\",\n    \"string\",\n    \"string\",\n    \"string\"\n  ],\n  \"lat\": \"string\",\n  \"lon\": \"string\",\n  \"display_name\": \"string\",\n  \"class\": \"string\",\n  \"category\": \"string\",\n  \"type\": \"string\",\n  \"place_rank\": 7441,\n  \"importance\": 2528.8186043505902,\n  \"addresstype\": \"string\",\n  \"name\": \"string\",\n  \"icon\": \"string\",\n  \"address\": {\n    \"house_number\": \"string\",\n    \"road\": \"string\",\n    \"neighbourhood\": \"string\",\n    \"suburb\": \"string\",\n    \"city\": \"string\",\n    \"town\": \"string\",\n    \"village\": \"string\",\n    \"municipality\": \"string\",\n    \"county\": \"string\",\n    \"state_district\": \"string\",\n    \"state\": \"string\",\n    \"postcode\": \"string\",\n    \"country\": \"string\",\n    \"country_code\": \"string\"\n  },\n  \"extratags\": {\n    \"key_0\": \"string\"\n  },\n  \"namedetails\": {\n    \"key_0\": \"string\"\n  },\n  \"geojson\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdfc6668-1231-4c20-bca1-2f2b4217c70e",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "52.5487429714954"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "-1.81602098644987"
+                    },
+                    {
+                      "key": "zoom",
+                      "value": "18"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "address,poi"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 5905,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99981744-4bd3-4758-8267-d03dd2006557",
+              "name": "Rate limit exceeded. The public Nominatim instance enforces a hard\nceiling of 1 request per second across all your traffic. See\nhttps://operations.osmfoundation.org/policies/nominatim/.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "52.5487429714954"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "-1.81602098644987"
+                    },
+                    {
+                      "key": "zoom",
+                      "value": "18"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "address,poi"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 5905,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8d62ec4d-d3e0-4cd3-a033-ecab233c3d70",
+      "name": "Lookup",
+      "description": {
+        "content": "Look up address details for OSM objects by their OSM ID.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3ac0ac7-3b1e-4cae-9399-16d508e91093",
+          "name": "Look Up Address Details For OSM Objects",
+          "request": {
+            "name": "Look Up Address Details For OSM Objects",
+            "description": {
+              "content": "Look up address details for one or more OSM objects identified by their\nOSM type and ID. Up to 50 IDs may be passed per request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "osm_ids",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of OSM IDs each prefixed with type\n(N=node, W=way, R=relation). Maximum 50 IDs per request.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "jsonv2",
+                  "description": "Output format."
+                },
+                {
+                  "disabled": false,
+                  "key": "json_callback",
+                  "value": "<string>",
+                  "description": "Wrap JSON output in a JSONP callback."
+                },
+                {
+                  "disabled": false,
+                  "key": "addressdetails",
+                  "value": "0",
+                  "description": "Include a breakdown of the address into elements."
+                },
+                {
+                  "disabled": false,
+                  "key": "extratags",
+                  "value": "0",
+                  "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+                },
+                {
+                  "disabled": false,
+                  "key": "namedetails",
+                  "value": "0",
+                  "description": "Include a full list of names for the result."
+                },
+                {
+                  "disabled": false,
+                  "key": "accept-language",
+                  "value": "<string>",
+                  "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_geojson",
+                  "value": "0",
+                  "description": "Output geometry as GeoJSON."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_kml",
+                  "value": "0",
+                  "description": "Output geometry as KML."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_svg",
+                  "value": "0",
+                  "description": "Output geometry as SVG."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_text",
+                  "value": "0",
+                  "description": "Output geometry as WKT."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_threshold",
+                  "value": "0",
+                  "description": "Simplification tolerance for polygon output, in degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "debug",
+                  "value": "0",
+                  "description": "Return verbose HTML output containing internal debugging information."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "003c3764-dcc3-4549-bc9c-685e9c12c85c",
+              "name": "An array of matching places.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "osm_ids",
+                      "value": "R146656,W104393803,N240109189"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"place_id\": 4851,\n    \"licence\": \"Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright\",\n    \"osm_type\": \"node\",\n    \"osm_id\": 5160,\n    \"boundingbox\": [\n      \"string\",\n      \"string\",\n      \"string\",\n      \"string\"\n    ],\n    \"lat\": \"string\",\n    \"lon\": \"string\",\n    \"display_name\": \"string\",\n    \"class\": \"string\",\n    \"category\": \"string\",\n    \"type\": \"string\",\n    \"place_rank\": 2156,\n    \"importance\": 8298.563124934692,\n    \"addresstype\": \"string\",\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"address\": {\n      \"house_number\": \"string\",\n      \"road\": \"string\",\n      \"neighbourhood\": \"string\",\n      \"suburb\": \"string\",\n      \"city\": \"string\",\n      \"town\": \"string\",\n      \"village\": \"string\",\n      \"municipality\": \"string\",\n      \"county\": \"string\",\n      \"state_district\": \"string\",\n      \"state\": \"string\",\n      \"postcode\": \"string\",\n      \"country\": \"string\",\n      \"country_code\": \"string\"\n    },\n    \"extratags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"namedetails\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"geojson\": {}\n  },\n  {\n    \"place_id\": 7727,\n    \"licence\": \"Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright\",\n    \"osm_type\": \"relation\",\n    \"osm_id\": 761,\n    \"boundingbox\": [\n      \"string\",\n      \"string\",\n      \"string\",\n      \"string\"\n    ],\n    \"lat\": \"string\",\n    \"lon\": \"string\",\n    \"display_name\": \"string\",\n    \"class\": \"string\",\n    \"category\": \"string\",\n    \"type\": \"string\",\n    \"place_rank\": 8813,\n    \"importance\": 1122.161378401324,\n    \"addresstype\": \"string\",\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"address\": {\n      \"house_number\": \"string\",\n      \"road\": \"string\",\n      \"neighbourhood\": \"string\",\n      \"suburb\": \"string\",\n      \"city\": \"string\",\n      \"town\": \"string\",\n      \"village\": \"string\",\n      \"municipality\": \"string\",\n      \"county\": \"string\",\n      \"state_district\": \"string\",\n      \"state\": \"string\",\n      \"postcode\": \"string\",\n      \"country\": \"string\",\n      \"country_code\": \"string\",\n      \"key_0\": \"string\"\n    },\n    \"extratags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"namedetails\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"geojson\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24ba312f-82d5-499c-a021-7e492ea2b688",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "osm_ids",
+                      "value": "R146656,W104393803,N240109189"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 5905,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "297d7035-d847-4c80-888b-27fa619ec582",
+              "name": "Rate limit exceeded. The public Nominatim instance enforces a hard\nceiling of 1 request per second across all your traffic. See\nhttps://operations.osmfoundation.org/policies/nominatim/.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "osm_ids",
+                      "value": "R146656,W104393803,N240109189"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 5905,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "62a7c7a4-684d-47b3-b211-ffa092afb0d4",
+      "name": "Details",
+      "description": {
+        "content": "Internal place details, intended for debugging.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e576413e-8ed6-47d9-96f4-f11907601798",
+          "name": "Show Internal Place Details",
+          "request": {
+            "name": "Show Internal Place Details",
+            "description": {
+              "content": "Show internal details for an object. Intended for debugging — the\nendpoint is not part of the stable API surface and the place_id is not\nportable across Nominatim installations.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "osmtype",
+                  "value": "<string>",
+                  "description": "OSM object type (N=node, W=way, R=relation)."
+                },
+                {
+                  "disabled": false,
+                  "key": "osmid",
+                  "value": "<long>",
+                  "description": "OSM object ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "class",
+                  "value": "<string>",
+                  "description": "Optional OSM tag key used to disambiguate between multiple places\noriginating from the same OSM object.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "place_id",
+                  "value": "<long>",
+                  "description": "Internal Nominatim place identifier. Not portable across Nominatim\ninstances.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "json_callback",
+                  "value": "<string>",
+                  "description": "Wrap JSON output in a JSONP callback."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "jsonv2",
+                  "description": "Output format."
+                },
+                {
+                  "disabled": false,
+                  "key": "addressdetails",
+                  "value": "0",
+                  "description": "Include a breakdown of the address into elements."
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "0",
+                  "description": "Include name and address keywords used for indexing."
+                },
+                {
+                  "disabled": false,
+                  "key": "linkedplaces",
+                  "value": "1",
+                  "description": "Include details for linked places."
+                },
+                {
+                  "disabled": false,
+                  "key": "hierarchy",
+                  "value": "0",
+                  "description": "Include dependent POIs and addresses."
+                },
+                {
+                  "disabled": false,
+                  "key": "group_hierarchy",
+                  "value": "0",
+                  "description": "Group the hierarchy output by element type."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_geojson",
+                  "value": "0",
+                  "description": "Output geometry as GeoJSON."
+                },
+                {
+                  "disabled": false,
+                  "key": "accept-language",
+                  "value": "<string>",
+                  "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fb99c75-b83e-4d64-aa5f-eacc923b677c",
+              "name": "Internal place details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "osmtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osmid",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "place_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "0"
+                    },
+                    {
+                      "key": "linkedplaces",
+                      "value": "1"
+                    },
+                    {
+                      "key": "hierarchy",
+                      "value": "0"
+                    },
+                    {
+                      "key": "group_hierarchy",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"place_id\": 7718,\n  \"parent_place_id\": 1423,\n  \"osm_type\": \"string\",\n  \"osm_id\": 2761,\n  \"category\": \"string\",\n  \"type\": \"string\",\n  \"admin_level\": 9634,\n  \"localname\": \"string\",\n  \"names\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"addresstags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"extratags\": {\n    \"key_0\": \"string\"\n  },\n  \"calculated_postcode\": \"string\",\n  \"country_code\": \"string\",\n  \"indexed_date\": \"1956-02-21T15:29:44.729Z\",\n  \"importance\": 3848.8398786412135,\n  \"calculated_importance\": 7932.653296888862,\n  \"rank_address\": 9914,\n  \"rank_search\": 6001,\n  \"isarea\": true,\n  \"centroid\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      4754.935179032333,\n      5205.2922547190465\n    ]\n  },\n  \"geometry\": {},\n  \"keywords\": {},\n  \"hierarchy\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c321e83-5d26-431d-a51b-a165111b0130",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "osmtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osmid",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "place_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "0"
+                    },
+                    {
+                      "key": "linkedplaces",
+                      "value": "1"
+                    },
+                    {
+                      "key": "hierarchy",
+                      "value": "0"
+                    },
+                    {
+                      "key": "group_hierarchy",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 5905,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a184dc5b-5d22-4196-8a3c-6902de031015",
+      "name": "Status",
+      "description": {
+        "content": "Service and database status reporting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2ba66b1-7f2b-4635-8025-cabefaf0dea3",
+          "name": "Report Service And Database Status",
+          "request": {
+            "name": "Report Service And Database Status",
+            "description": {
+              "content": "Report on the state of the Nominatim service and its underlying\ndatabase. Useful for health checks.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "text",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77bfd8b4-3d1a-4c9e-9db8-941c121a1fdf",
+              "name": "Service is healthy. JSON response includes data update timestamp and versions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "text"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"message\": \"OK\",\n  \"data_updated\": \"2026-05-04T14:47:00+00:00\",\n  \"software_version\": \"4.5.0\",\n  \"database_version\": \"4.5.0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7255cbfe-08b6-496f-9589-f5f8f45863fa",
+              "name": "Service or database error (text format only).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "text"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "ERROR: Database connection failed",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2f49746d-9031-4dea-987e-5b08110b2871",
+      "name": "Deletable",
+      "description": {
+        "content": "Objects removed from OpenStreetMap but retained in Nominatim.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02923de3-6ed1-4639-83f9-257c6574928f",
+          "name": "List Objects Deleted From OSM But Retained In Nominatim",
+          "request": {
+            "name": "List Objects Deleted From OSM But Retained In Nominatim",
+            "description": {
+              "content": "List OSM objects that have been deleted upstream in OpenStreetMap but\nare still present in the Nominatim database. Used for data quality\nmonitoring.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deletable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c29e51e3-4ebd-4cee-bbaf-02889b57548c",
+              "name": "HTML or JSON listing of deletable objects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deletable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f4edfe13-1de7-4b20-8f8a-3fb7d50a9d4e",
+      "name": "Polygons",
+      "description": {
+        "content": "Problematic polygon data detected by the system.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a7c57f7c-e8bc-4a5b-875c-16684f74d2ba",
+          "name": "List Problematic Polygon Geometries",
+          "request": {
+            "name": "List Problematic Polygon Geometries",
+            "description": {
+              "content": "List polygons whose geometries the Nominatim importer flagged as\nbroken or otherwise problematic. Used for data quality monitoring.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "polygons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c46104ac-92a7-4610-8736-28c0ef20daed",
+              "name": "HTML or JSON listing of problematic polygons.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polygons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://nominatim.openstreetmap.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1ce57c16-67a9-4f7c-bcb2-ca9ed8520b64",
+    "name": "Nominatim API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nominatim is an open-source search engine for OpenStreetMap data. It can be\nused to find places by name and address (forward geocoding) and to derive\naddress information from coordinates (reverse geocoding). Nominatim is\ndeveloped under the BSD 2-Clause license by the OpenStreetMap Search team\n(osm-search) and is hosted at https://nominatim.openstreetmap.org by the\nOpenStreetMap Foundation as a free public service.\n\nSelf-hosted deployments are common; commercial hosted Nominatim is also\navailable from MapTiler, LocationIQ, and Geocode Earth, among others.\n\nUse of the public OSMF instance is governed by the Nominatim Usage Policy:\nhttps://operations.osmfoundation.org/policies/nominatim/ — a hard limit of\nno more than 1 request per second is enforced across all your traffic, and\na meaningful HTTP User-Agent identifying your application is required.\n\n\nContact Support:\n Name: OpenStreetMap Search Team",
+      "type": "text/plain"
+    }
+  }
+}

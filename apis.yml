@@ -1,13 +1,10 @@
 aid: nominatim
 name: Nominatim
 description: >-
-  Nominatim is an open-source (BSD-2-Clause) search engine for OpenStreetMap
-  data, supporting forward geocoding (address to coordinates), reverse
-  geocoding (coordinates to address), and address lookup by OSM ID. The
-  OpenStreetMap Foundation runs a free public instance at
-  nominatim.openstreetmap.org under a published usage policy, and the project
-  is also widely self-hosted and resold by commercial providers (MapTiler,
-  LocationIQ, Geocode Earth).
+  Nominatim is an open-source (BSD-2-Clause) search engine for OpenStreetMap data, supporting forward geocoding (address
+  to coordinates), reverse geocoding (coordinates to address), and address lookup by OSM ID. The OpenStreetMap
+  Foundation runs a free public instance at nominatim.openstreetmap.org under a published usage policy, and the project
+  is also widely self-hosted and resold by commercial providers (MapTiler, LocationIQ, Geocode Earth).
 url: https://nominatim.org/
 image: https://nominatim.org/theme/images/osm-logo.svg
 specificationVersion: '0.20'
@@ -30,9 +27,8 @@ tags:
 apis:
   - name: Nominatim API
     description: >-
-      HTTP API surface implemented by Nominatim. The same surface is exposed by
-      the OSMF public instance, self-hosted Nominatim deployments, and most
-      commercial Nominatim-compatible providers.
+      HTTP API surface implemented by Nominatim. The same surface is exposed by the OSMF public instance, self-hosted
+      Nominatim deployments, and most commercial Nominatim-compatible providers.
     humanURL: https://nominatim.org/release-docs/develop/api/Overview/
     baseURL: https://nominatim.openstreetmap.org
     tags:
@@ -143,15 +139,6 @@ common:
     url: vocabulary/nominatim-vocabulary.yml
   - type: SpectralRules
     url: rules/nominatim-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/geocoding.yaml
-    title: Forward And Reverse Geocoding
-  - type: NaftikoCapability
-    url: capabilities/address-lookup.yaml
-    title: OSM Object Address Lookup
-  - type: NaftikoCapability
-    url: capabilities/service-health.yaml
-    title: Nominatim Service Health Check
   - type: Tools
     url: https://github.com/NERVsystems/osmmcp
     title: osmmcp — OpenStreetMap MCP Server (Nominatim + Overpass + OSRM)
