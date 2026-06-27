@@ -66,35 +66,35 @@ apis:
         title: Status Structure
       - type: JSONLD
         url: json-ld/nominatim-context.jsonld
-      - type: Example
+      - type: Examples
         url: examples/nominatim-search-example.json
         title: Search Example
-      - type: Example
+      - type: Examples
         url: examples/nominatim-reverse-example.json
         title: Reverse Example
-      - type: Example
+      - type: Examples
         url: examples/nominatim-lookup-example.json
         title: Lookup Example
-      - type: Example
+      - type: Examples
         url: examples/nominatim-details-example.json
         title: Details Example
-      - type: Example
+      - type: Examples
         url: examples/nominatim-status-example.json
         title: Status Example
-      - type: Example
+      - type: Examples
         url: examples/nominatim-place-example.json
         title: Place JSON-LD Example
-      - type: Example
+      - type: Examples
         url: examples/nominatim-address-example.json
         title: Address JSON-LD Example
       - type: RateLimits
         url: rate-limits/nominatim-rate-limits.yml
       - type: Plans
         url: plans/nominatim-plans-pricing.yml
-      - type: SDK
+      - type: SDKs
         url: https://pypi.org/project/nominatim-api/
         title: Nominatim Python API
-      - type: SDK
+      - type: SDKs
         url: https://pypi.org/project/geopy/
         title: geopy (Python, includes Nominatim geocoder)
 common:
