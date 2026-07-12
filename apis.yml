@@ -98,6 +98,8 @@ apis:
         url: https://pypi.org/project/geopy/
         title: geopy (Python, includes Nominatim geocoder)
 common:
+  - type: DomainSecurity
+    url: security/nominatim-domain-security.yml
   - type: Website
     url: https://nominatim.org/
   - type: Documentation
@@ -210,6 +212,8 @@ common:
         description: BSD-2-Clause stack you import a planet dump into; no upstream rate limits.
       - name: Commercial Hosted Nominatim
         description: Paid hosted offerings from MapTiler, LocationIQ, Geocode Earth and others.
+  - url: https://nominatim.org/feed.xml
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
