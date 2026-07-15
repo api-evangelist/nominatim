@@ -98,6 +98,8 @@ apis:
         url: https://pypi.org/project/geopy/
         title: geopy (Python, includes Nominatim geocoder)
 common:
+  - type: AgenticAccess
+    url: agentic-access/nominatim-agentic-access.yml
   - type: DomainSecurity
     url: security/nominatim-domain-security.yml
   - type: Website
