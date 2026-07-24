@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Nominatim Deletable API
+  description: 'Nominatim is an open-source search engine for OpenStreetMap data. It can be
+
+    used to find places by name and address (forward geocoding) and to derive
+
+    address information from coordinates (reverse geocoding). Nominatim is
+
+    developed under the BSD 2-Clause license by the OpenStreetMap Search team
+
+    (osm-search) and is hosted at https://nominatim.openstreetmap.org by the
+
+    OpenStreetMap Foundation as a free public service.
+
+
+    Self-hosted deployments are common; commercial hosted Nominatim is also
+
+    available from MapTiler, LocationIQ, and Geocode Earth, among others.
+
+
+    Use of the public OSMF instance is governed by the Nominatim Usage Policy:
+
+    https://operations.osmfoundation.org/policies/nominatim/ — a hard limit of
+
+    no more than 1 request per second is enforced across all your traffic, and
+
+    a meaningful HTTP User-Agent identifying your application is required.
+
+    '
+  version: 4.5.0
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/osm-search/Nominatim/blob/master/COPYING
+  contact:
+    name: OpenStreetMap Search Team
+    url: https://nominatim.org/
+  termsOfService: https://operations.osmfoundation.org/policies/nominatim/
+servers:
+- url: https://nominatim.openstreetmap.org
+  description: Public Nominatim instance operated by the OpenStreetMap Foundation
+- url: https://{host}
+  description: Self-hosted Nominatim instance
+  variables:
+    host:
+      default: nominatim.example.org
+      description: Hostname of a self-hosted Nominatim deployment
+tags:
+- name: Deletable
+  description: Objects removed from OpenStreetMap but retained in Nominatim.
+paths:
+  /deletable:
+    get:
+      operationId: deletable
+      tags:
+      - Deletable
+      summary: List Objects Deleted From OSM But Retained In Nominatim
+      description: 'List OSM objects that have been deleted upstream in OpenStreetMap but
+
+        are still present in the Nominatim database. Used for data quality
+
+        monitoring.
+
+        '
+      responses:
+        '200':
+          description: HTML or JSON listing of deletable objects.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object

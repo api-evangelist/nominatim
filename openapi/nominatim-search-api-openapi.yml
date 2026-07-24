@@ -1,0 +1,499 @@
+openapi: 3.0.3
+info:
+  title: Nominatim Deletable Search API
+  description: 'Nominatim is an open-source search engine for OpenStreetMap data. It can be
+
+    used to find places by name and address (forward geocoding) and to derive
+
+    address information from coordinates (reverse geocoding). Nominatim is
+
+    developed under the BSD 2-Clause license by the OpenStreetMap Search team
+
+    (osm-search) and is hosted at https://nominatim.openstreetmap.org by the
+
+    OpenStreetMap Foundation as a free public service.
+
+
+    Self-hosted deployments are common; commercial hosted Nominatim is also
+
+    available from MapTiler, LocationIQ, and Geocode Earth, among others.
+
+
+    Use of the public OSMF instance is governed by the Nominatim Usage Policy:
+
+    https://operations.osmfoundation.org/policies/nominatim/ — a hard limit of
+
+    no more than 1 request per second is enforced across all your traffic, and
+
+    a meaningful HTTP User-Agent identifying your application is required.
+
+    '
+  version: 4.5.0
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/osm-search/Nominatim/blob/master/COPYING
+  contact:
+    name: OpenStreetMap Search Team
+    url: https://nominatim.org/
+  termsOfService: https://operations.osmfoundation.org/policies/nominatim/
+servers:
+- url: https://nominatim.openstreetmap.org
+  description: Public Nominatim instance operated by the OpenStreetMap Foundation
+- url: https://{host}
+  description: Self-hosted Nominatim instance
+  variables:
+    host:
+      default: nominatim.example.org
+      description: Hostname of a self-hosted Nominatim deployment
+tags:
+- name: Search
+  description: Forward geocoding — search OSM objects by name or address.
+paths:
+  /search:
+    get:
+      operationId: search
+      tags:
+      - Search
+      summary: Search OSM Objects By Name Or Address
+      description: 'Forward-geocode a free-form or structured query and return matching
+
+        OSM objects. Use the free-form `q` parameter or one of the structured
+
+        parameters (`amenity`, `street`, `city`, `county`, `state`, `country`,
+
+        `postalcode`) — the two query styles cannot be combined.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/Query'
+      - $ref: '#/components/parameters/Amenity'
+      - $ref: '#/components/parameters/Street'
+      - $ref: '#/components/parameters/City'
+      - $ref: '#/components/parameters/County'
+      - $ref: '#/components/parameters/State'
+      - $ref: '#/components/parameters/Country'
+      - $ref: '#/components/parameters/Postalcode'
+      - $ref: '#/components/parameters/Format'
+      - $ref: '#/components/parameters/JsonCallback'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/AddressDetails'
+      - $ref: '#/components/parameters/ExtraTags'
+      - $ref: '#/components/parameters/NameDetails'
+      - $ref: '#/components/parameters/AcceptLanguage'
+      - $ref: '#/components/parameters/CountryCodes'
+      - $ref: '#/components/parameters/ExcludePlaceIds'
+      - $ref: '#/components/parameters/Viewbox'
+      - $ref: '#/components/parameters/Bounded'
+      - $ref: '#/components/parameters/PolygonGeoJSON'
+      - $ref: '#/components/parameters/PolygonKML'
+      - $ref: '#/components/parameters/PolygonSVG'
+      - $ref: '#/components/parameters/PolygonText'
+      - $ref: '#/components/parameters/PolygonThreshold'
+      - $ref: '#/components/parameters/Dedupe'
+      - $ref: '#/components/parameters/Layer'
+      - $ref: '#/components/parameters/FeatureType'
+      - $ref: '#/components/parameters/Email'
+      - $ref: '#/components/parameters/Debug'
+      responses:
+        '200':
+          description: A list of matching places.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Place'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  parameters:
+    Dedupe:
+      name: dedupe
+      in: query
+      description: Remove duplicate hits from the result set.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 1
+    PolygonSVG:
+      name: polygon_svg
+      in: query
+      description: Output geometry as SVG.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Country:
+      name: country
+      in: query
+      schema:
+        type: string
+    City:
+      name: city
+      in: query
+      schema:
+        type: string
+    Format:
+      name: format
+      in: query
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        - jsonv2
+        - geojson
+        - geocodejson
+        default: jsonv2
+    Amenity:
+      name: amenity
+      in: query
+      description: Name or type of point of interest.
+      schema:
+        type: string
+    County:
+      name: county
+      in: query
+      schema:
+        type: string
+    Postalcode:
+      name: postalcode
+      in: query
+      schema:
+        type: string
+    Viewbox:
+      name: viewbox
+      in: query
+      description: 'Bounding box `x1,y1,x2,y2` (longitudes and latitudes) used to bias
+
+        results toward a geographic area.
+
+        '
+      schema:
+        type: string
+        example: -180,-90,180,90
+    FeatureType:
+      name: featureType
+      in: query
+      description: Restrict search results to a single feature type.
+      schema:
+        type: string
+        enum:
+        - country
+        - state
+        - city
+        - settlement
+    CountryCodes:
+      name: countrycodes
+      in: query
+      description: Comma-separated list of ISO 3166-1 alpha-2 country codes to limit results to.
+      schema:
+        type: string
+        example: us,ca,mx
+    Layer:
+      name: layer
+      in: query
+      description: 'Restrict results to one or more feature layers. Comma-separated list of
+
+        `address`, `poi`, `railway`, `natural`, `manmade`.
+
+        '
+      schema:
+        type: string
+        example: address,poi
+    Email:
+      name: email
+      in: query
+      description: 'Email address identifying you when making high-volume requests. Required
+
+        by the OSMF usage policy at sustained traffic levels.
+
+        '
+      schema:
+        type: string
+        format: email
+    State:
+      name: state
+      in: query
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of returned results.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 40
+        default: 10
+    ExcludePlaceIds:
+      name: exclude_place_ids
+      in: query
+      description: Comma-separated list of place IDs to exclude from the result set.
+      schema:
+        type: string
+    AcceptLanguage:
+      name: accept-language
+      in: query
+      description: 'Preferred language order for showing search results, in browser-style
+
+        format (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language
+
+        header.
+
+        '
+      schema:
+        type: string
+    NameDetails:
+      name: namedetails
+      in: query
+      description: Include a full list of names for the result.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    JsonCallback:
+      name: json_callback
+      in: query
+      description: Wrap JSON output in a JSONP callback.
+      schema:
+        type: string
+    Query:
+      name: q
+      in: query
+      description: Free-form query string. Cannot be combined with structured query parameters.
+      schema:
+        type: string
+        example: 135 pilkington avenue, birmingham
+    Street:
+      name: street
+      in: query
+      description: House number and street name.
+      schema:
+        type: string
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    ExtraTags:
+      name: extratags
+      in: query
+      description: Include additional information (Wikipedia link, opening hours, etc.).
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonKML:
+      name: polygon_kml
+      in: query
+      description: Output geometry as KML.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Bounded:
+      name: bounded
+      in: query
+      description: When set, restrict results strictly to the viewbox.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Debug:
+      name: debug
+      in: query
+      description: Return verbose HTML output containing internal debugging information.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonThreshold:
+      name: polygon_threshold
+      in: query
+      description: Simplification tolerance for polygon output, in degrees.
+      schema:
+        type: number
+        format: double
+        minimum: 0
+        default: 0
+    PolygonText:
+      name: polygon_text
+      in: query
+      description: Output geometry as WKT.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    AddressDetails:
+      name: addressdetails
+      in: query
+      description: Include a breakdown of the address into elements.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+  schemas:
+    Address:
+      type: object
+      description: Structured address breakdown for a place.
+      properties:
+        house_number:
+          type: string
+        road:
+          type: string
+        neighbourhood:
+          type: string
+        suburb:
+          type: string
+        city:
+          type: string
+        town:
+          type: string
+        village:
+          type: string
+        municipality:
+          type: string
+        county:
+          type: string
+        state_district:
+          type: string
+        state:
+          type: string
+        postcode:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code, lowercase.
+      additionalProperties:
+        type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+    Place:
+      type: object
+      description: A single Nominatim place result.
+      properties:
+        place_id:
+          type: integer
+          format: int64
+          description: Internal Nominatim place ID. Not portable across installations.
+        licence:
+          type: string
+          description: Licence and attribution text for the returned data.
+          example: Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright
+        osm_type:
+          type: string
+          enum:
+          - node
+          - way
+          - relation
+        osm_id:
+          type: integer
+          format: int64
+        boundingbox:
+          type: array
+          description: '[min_lat, max_lat, min_lon, max_lon] as strings.'
+          items:
+            type: string
+          minItems: 4
+          maxItems: 4
+        lat:
+          type: string
+          description: Latitude of the centroid.
+        lon:
+          type: string
+          description: Longitude of the centroid.
+        display_name:
+          type: string
+          description: Full, comma-separated address.
+        class:
+          type: string
+          description: Main OSM tag key for this object (jsonv2 renames this to `category`).
+        category:
+          type: string
+          description: Main OSM tag key for this object (jsonv2 only).
+        type:
+          type: string
+          description: Main OSM tag value for this object.
+        place_rank:
+          type: integer
+          description: Search rank of the object (jsonv2 only).
+        importance:
+          type: number
+          format: double
+          description: Computed importance rank for ordering results.
+        addresstype:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          description: URL of an icon representing the result class.
+        address:
+          $ref: '#/components/schemas/Address'
+        extratags:
+          type: object
+          additionalProperties:
+            type: string
+        namedetails:
+          type: object
+          additionalProperties:
+            type: string
+        geojson:
+          type: object
+          description: GeoJSON geometry of the result (when polygon_geojson=1).
+  responses:
+    TooManyRequests:
+      description: 'Rate limit exceeded. The public Nominatim instance enforces a hard
+
+        ceiling of 1 request per second across all your traffic. See
+
+        https://operations.osmfoundation.org/policies/nominatim/.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

@@ -1,0 +1,113 @@
+openapi: 3.0.3
+info:
+  title: Nominatim Deletable Status API
+  description: 'Nominatim is an open-source search engine for OpenStreetMap data. It can be
+
+    used to find places by name and address (forward geocoding) and to derive
+
+    address information from coordinates (reverse geocoding). Nominatim is
+
+    developed under the BSD 2-Clause license by the OpenStreetMap Search team
+
+    (osm-search) and is hosted at https://nominatim.openstreetmap.org by the
+
+    OpenStreetMap Foundation as a free public service.
+
+
+    Self-hosted deployments are common; commercial hosted Nominatim is also
+
+    available from MapTiler, LocationIQ, and Geocode Earth, among others.
+
+
+    Use of the public OSMF instance is governed by the Nominatim Usage Policy:
+
+    https://operations.osmfoundation.org/policies/nominatim/ — a hard limit of
+
+    no more than 1 request per second is enforced across all your traffic, and
+
+    a meaningful HTTP User-Agent identifying your application is required.
+
+    '
+  version: 4.5.0
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/osm-search/Nominatim/blob/master/COPYING
+  contact:
+    name: OpenStreetMap Search Team
+    url: https://nominatim.org/
+  termsOfService: https://operations.osmfoundation.org/policies/nominatim/
+servers:
+- url: https://nominatim.openstreetmap.org
+  description: Public Nominatim instance operated by the OpenStreetMap Foundation
+- url: https://{host}
+  description: Self-hosted Nominatim instance
+  variables:
+    host:
+      default: nominatim.example.org
+      description: Hostname of a self-hosted Nominatim deployment
+tags:
+- name: Status
+  description: Service and database status reporting.
+paths:
+  /status:
+    get:
+      operationId: status
+      tags:
+      - Status
+      summary: Report Service And Database Status
+      description: 'Report on the state of the Nominatim service and its underlying
+
+        database. Useful for health checks.
+
+        '
+      parameters:
+      - name: format
+        in: query
+        description: Response format.
+        schema:
+          type: string
+          enum:
+          - text
+          - json
+          default: text
+      responses:
+        '200':
+          description: Service is healthy. JSON response includes data update timestamp and versions.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+        '500':
+          description: Service or database error (text format only).
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'ERROR: Database connection failed'
+components:
+  schemas:
+    Status:
+      type: object
+      description: Service and database status.
+      properties:
+        status:
+          type: integer
+          description: Numeric status code (0 means OK).
+          example: 0
+        message:
+          type: string
+          example: OK
+        data_updated:
+          type: string
+          format: date-time
+          example: '2026-05-04T14:47:00+00:00'
+        software_version:
+          type: string
+          example: 4.5.0
+        database_version:
+          type: string
+          example: 4.5.0

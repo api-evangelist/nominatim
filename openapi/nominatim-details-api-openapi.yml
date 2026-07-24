@@ -1,0 +1,300 @@
+openapi: 3.0.3
+info:
+  title: Nominatim Deletable Details API
+  description: 'Nominatim is an open-source search engine for OpenStreetMap data. It can be
+
+    used to find places by name and address (forward geocoding) and to derive
+
+    address information from coordinates (reverse geocoding). Nominatim is
+
+    developed under the BSD 2-Clause license by the OpenStreetMap Search team
+
+    (osm-search) and is hosted at https://nominatim.openstreetmap.org by the
+
+    OpenStreetMap Foundation as a free public service.
+
+
+    Self-hosted deployments are common; commercial hosted Nominatim is also
+
+    available from MapTiler, LocationIQ, and Geocode Earth, among others.
+
+
+    Use of the public OSMF instance is governed by the Nominatim Usage Policy:
+
+    https://operations.osmfoundation.org/policies/nominatim/ — a hard limit of
+
+    no more than 1 request per second is enforced across all your traffic, and
+
+    a meaningful HTTP User-Agent identifying your application is required.
+
+    '
+  version: 4.5.0
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/osm-search/Nominatim/blob/master/COPYING
+  contact:
+    name: OpenStreetMap Search Team
+    url: https://nominatim.org/
+  termsOfService: https://operations.osmfoundation.org/policies/nominatim/
+servers:
+- url: https://nominatim.openstreetmap.org
+  description: Public Nominatim instance operated by the OpenStreetMap Foundation
+- url: https://{host}
+  description: Self-hosted Nominatim instance
+  variables:
+    host:
+      default: nominatim.example.org
+      description: Hostname of a self-hosted Nominatim deployment
+tags:
+- name: Details
+  description: Internal place details, intended for debugging.
+paths:
+  /details:
+    get:
+      operationId: details
+      tags:
+      - Details
+      summary: Show Internal Place Details
+      description: 'Show internal details for an object. Intended for debugging — the
+
+        endpoint is not part of the stable API surface and the place_id is not
+
+        portable across Nominatim installations.
+
+        '
+      parameters:
+      - name: osmtype
+        in: query
+        description: OSM object type (N=node, W=way, R=relation).
+        schema:
+          type: string
+          enum:
+          - N
+          - W
+          - R
+      - name: osmid
+        in: query
+        description: OSM object ID.
+        schema:
+          type: integer
+          format: int64
+      - name: class
+        in: query
+        description: 'Optional OSM tag key used to disambiguate between multiple places
+
+          originating from the same OSM object.
+
+          '
+        schema:
+          type: string
+      - name: place_id
+        in: query
+        description: 'Internal Nominatim place identifier. Not portable across Nominatim
+
+          instances.
+
+          '
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/JsonCallback'
+      - $ref: '#/components/parameters/Format'
+      - name: addressdetails
+        in: query
+        description: Include a breakdown of the address into elements.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+      - name: keywords
+        in: query
+        description: Include name and address keywords used for indexing.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+      - name: linkedplaces
+        in: query
+        description: Include details for linked places.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 1
+      - name: hierarchy
+        in: query
+        description: Include dependent POIs and addresses.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+      - name: group_hierarchy
+        in: query
+        description: Group the hierarchy output by element type.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+      - $ref: '#/components/parameters/PolygonGeoJSON'
+      - $ref: '#/components/parameters/AcceptLanguage'
+      responses:
+        '200':
+          description: Internal place details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceDetails'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  parameters:
+    AcceptLanguage:
+      name: accept-language
+      in: query
+      description: 'Preferred language order for showing search results, in browser-style
+
+        format (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language
+
+        header.
+
+        '
+      schema:
+        type: string
+    JsonCallback:
+      name: json_callback
+      in: query
+      description: Wrap JSON output in a JSONP callback.
+      schema:
+        type: string
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Format:
+      name: format
+      in: query
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        - jsonv2
+        - geojson
+        - geocodejson
+        default: jsonv2
+  schemas:
+    PlaceDetails:
+      type: object
+      description: Verbose internal details for a single place.
+      properties:
+        place_id:
+          type: integer
+          format: int64
+        parent_place_id:
+          type: integer
+          format: int64
+        osm_type:
+          type: string
+        osm_id:
+          type: integer
+          format: int64
+        category:
+          type: string
+        type:
+          type: string
+        admin_level:
+          type: integer
+        localname:
+          type: string
+        names:
+          type: object
+          additionalProperties:
+            type: string
+        addresstags:
+          type: object
+          additionalProperties:
+            type: string
+        extratags:
+          type: object
+          additionalProperties:
+            type: string
+        calculated_postcode:
+          type: string
+        country_code:
+          type: string
+        indexed_date:
+          type: string
+          format: date-time
+        importance:
+          type: number
+          format: double
+        calculated_importance:
+          type: number
+          format: double
+        rank_address:
+          type: integer
+        rank_search:
+          type: integer
+        isarea:
+          type: boolean
+        centroid:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+                format: double
+              minItems: 2
+              maxItems: 2
+        geometry:
+          type: object
+          description: GeoJSON geometry (when polygon_geojson=1).
+        address:
+          type: array
+          items:
+            type: object
+        keywords:
+          type: object
+        hierarchy:
+          type: object
+        linked_places:
+          type: array
+          items:
+            type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

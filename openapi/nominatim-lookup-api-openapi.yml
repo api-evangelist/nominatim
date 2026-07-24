@@ -1,0 +1,371 @@
+openapi: 3.0.3
+info:
+  title: Nominatim Deletable Lookup API
+  description: 'Nominatim is an open-source search engine for OpenStreetMap data. It can be
+
+    used to find places by name and address (forward geocoding) and to derive
+
+    address information from coordinates (reverse geocoding). Nominatim is
+
+    developed under the BSD 2-Clause license by the OpenStreetMap Search team
+
+    (osm-search) and is hosted at https://nominatim.openstreetmap.org by the
+
+    OpenStreetMap Foundation as a free public service.
+
+
+    Self-hosted deployments are common; commercial hosted Nominatim is also
+
+    available from MapTiler, LocationIQ, and Geocode Earth, among others.
+
+
+    Use of the public OSMF instance is governed by the Nominatim Usage Policy:
+
+    https://operations.osmfoundation.org/policies/nominatim/ — a hard limit of
+
+    no more than 1 request per second is enforced across all your traffic, and
+
+    a meaningful HTTP User-Agent identifying your application is required.
+
+    '
+  version: 4.5.0
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/osm-search/Nominatim/blob/master/COPYING
+  contact:
+    name: OpenStreetMap Search Team
+    url: https://nominatim.org/
+  termsOfService: https://operations.osmfoundation.org/policies/nominatim/
+servers:
+- url: https://nominatim.openstreetmap.org
+  description: Public Nominatim instance operated by the OpenStreetMap Foundation
+- url: https://{host}
+  description: Self-hosted Nominatim instance
+  variables:
+    host:
+      default: nominatim.example.org
+      description: Hostname of a self-hosted Nominatim deployment
+tags:
+- name: Lookup
+  description: Look up address details for OSM objects by their OSM ID.
+paths:
+  /lookup:
+    get:
+      operationId: lookup
+      tags:
+      - Lookup
+      summary: Look Up Address Details For OSM Objects
+      description: 'Look up address details for one or more OSM objects identified by their
+
+        OSM type and ID. Up to 50 IDs may be passed per request.
+
+        '
+      parameters:
+      - name: osm_ids
+        in: query
+        required: true
+        description: 'Comma-separated list of OSM IDs each prefixed with type
+
+          (N=node, W=way, R=relation). Maximum 50 IDs per request.
+
+          '
+        schema:
+          type: string
+          example: R146656,W104393803,N240109189
+      - $ref: '#/components/parameters/Format'
+      - $ref: '#/components/parameters/JsonCallback'
+      - $ref: '#/components/parameters/AddressDetails'
+      - $ref: '#/components/parameters/ExtraTags'
+      - $ref: '#/components/parameters/NameDetails'
+      - $ref: '#/components/parameters/AcceptLanguage'
+      - $ref: '#/components/parameters/PolygonGeoJSON'
+      - $ref: '#/components/parameters/PolygonKML'
+      - $ref: '#/components/parameters/PolygonSVG'
+      - $ref: '#/components/parameters/PolygonText'
+      - $ref: '#/components/parameters/PolygonThreshold'
+      - $ref: '#/components/parameters/Email'
+      - $ref: '#/components/parameters/Debug'
+      responses:
+        '200':
+          description: An array of matching places.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Place'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  parameters:
+    AcceptLanguage:
+      name: accept-language
+      in: query
+      description: 'Preferred language order for showing search results, in browser-style
+
+        format (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language
+
+        header.
+
+        '
+      schema:
+        type: string
+    Debug:
+      name: debug
+      in: query
+      description: Return verbose HTML output containing internal debugging information.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    NameDetails:
+      name: namedetails
+      in: query
+      description: Include a full list of names for the result.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonThreshold:
+      name: polygon_threshold
+      in: query
+      description: Simplification tolerance for polygon output, in degrees.
+      schema:
+        type: number
+        format: double
+        minimum: 0
+        default: 0
+    Format:
+      name: format
+      in: query
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        - jsonv2
+        - geojson
+        - geocodejson
+        default: jsonv2
+    PolygonText:
+      name: polygon_text
+      in: query
+      description: Output geometry as WKT.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonSVG:
+      name: polygon_svg
+      in: query
+      description: Output geometry as SVG.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    JsonCallback:
+      name: json_callback
+      in: query
+      description: Wrap JSON output in a JSONP callback.
+      schema:
+        type: string
+    AddressDetails:
+      name: addressdetails
+      in: query
+      description: Include a breakdown of the address into elements.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    ExtraTags:
+      name: extratags
+      in: query
+      description: Include additional information (Wikipedia link, opening hours, etc.).
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Email:
+      name: email
+      in: query
+      description: 'Email address identifying you when making high-volume requests. Required
+
+        by the OSMF usage policy at sustained traffic levels.
+
+        '
+      schema:
+        type: string
+        format: email
+    PolygonKML:
+      name: polygon_kml
+      in: query
+      description: Output geometry as KML.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+  schemas:
+    Address:
+      type: object
+      description: Structured address breakdown for a place.
+      properties:
+        house_number:
+          type: string
+        road:
+          type: string
+        neighbourhood:
+          type: string
+        suburb:
+          type: string
+        city:
+          type: string
+        town:
+          type: string
+        village:
+          type: string
+        municipality:
+          type: string
+        county:
+          type: string
+        state_district:
+          type: string
+        state:
+          type: string
+        postcode:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code, lowercase.
+      additionalProperties:
+        type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+    Place:
+      type: object
+      description: A single Nominatim place result.
+      properties:
+        place_id:
+          type: integer
+          format: int64
+          description: Internal Nominatim place ID. Not portable across installations.
+        licence:
+          type: string
+          description: Licence and attribution text for the returned data.
+          example: Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright
+        osm_type:
+          type: string
+          enum:
+          - node
+          - way
+          - relation
+        osm_id:
+          type: integer
+          format: int64
+        boundingbox:
+          type: array
+          description: '[min_lat, max_lat, min_lon, max_lon] as strings.'
+          items:
+            type: string
+          minItems: 4
+          maxItems: 4
+        lat:
+          type: string
+          description: Latitude of the centroid.
+        lon:
+          type: string
+          description: Longitude of the centroid.
+        display_name:
+          type: string
+          description: Full, comma-separated address.
+        class:
+          type: string
+          description: Main OSM tag key for this object (jsonv2 renames this to `category`).
+        category:
+          type: string
+          description: Main OSM tag key for this object (jsonv2 only).
+        type:
+          type: string
+          description: Main OSM tag value for this object.
+        place_rank:
+          type: integer
+          description: Search rank of the object (jsonv2 only).
+        importance:
+          type: number
+          format: double
+          description: Computed importance rank for ordering results.
+        addresstype:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          description: URL of an icon representing the result class.
+        address:
+          $ref: '#/components/schemas/Address'
+        extratags:
+          type: object
+          additionalProperties:
+            type: string
+        namedetails:
+          type: object
+          additionalProperties:
+            type: string
+        geojson:
+          type: object
+          description: GeoJSON geometry of the result (when polygon_geojson=1).
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: 'Rate limit exceeded. The public Nominatim instance enforces a hard
+
+        ceiling of 1 request per second across all your traffic. See
+
+        https://operations.osmfoundation.org/policies/nominatim/.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
