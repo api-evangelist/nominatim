@@ -6,6 +6,18 @@ description: >-
   Foundation runs a free public instance at nominatim.openstreetmap.org under a published usage policy, and the project
   is also widely self-hosted and resold by commercial providers (MapTiler, LocationIQ, Geocode Earth).
 url: https://nominatim.org/
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 image: https://nominatim.org/theme/images/osm-logo.svg
 specificationVersion: '0.20'
 created: '2026-05-28'
@@ -25,78 +37,370 @@ tags:
   - OpenSource
   - Public APIs
 apis:
-  - name: Nominatim API
-    description: >-
-      HTTP API surface implemented by Nominatim. The same surface is exposed by the OSMF public instance, self-hosted
-      Nominatim deployments, and most commercial Nominatim-compatible providers.
-    humanURL: https://nominatim.org/release-docs/develop/api/Overview/
-    baseURL: https://nominatim.openstreetmap.org
-    tags:
-      - Geocoding
-      - Search
-      - Reverse
-      - Lookup
-    properties:
-      - type: Documentation
-        url: https://nominatim.org/release-docs/develop/api/Overview/
-      - type: APIReference
-        url: https://nominatim.org/release-docs/develop/api/Search/
-      - type: OpenAPI
-        url: openapi/nominatim-openapi.yml
-      - type: JSONSchema
-        url: json-schema/nominatim-place-schema.json
-        title: Place Schema
-      - type: JSONSchema
-        url: json-schema/nominatim-address-schema.json
-        title: Address Schema
-      - type: JSONSchema
-        url: json-schema/nominatim-place-details-schema.json
-        title: PlaceDetails Schema
-      - type: JSONSchema
-        url: json-schema/nominatim-status-schema.json
-        title: Status Schema
-      - type: JSONStructure
-        url: json-structure/nominatim-place-structure.json
-        title: Place Structure
-      - type: JSONStructure
-        url: json-structure/nominatim-address-structure.json
-        title: Address Structure
-      - type: JSONStructure
-        url: json-structure/nominatim-status-structure.json
-        title: Status Structure
-      - type: JSONLD
-        url: json-ld/nominatim-context.jsonld
-      - type: Examples
-        url: examples/nominatim-search-example.json
-        title: Search Example
-      - type: Examples
-        url: examples/nominatim-reverse-example.json
-        title: Reverse Example
-      - type: Examples
-        url: examples/nominatim-lookup-example.json
-        title: Lookup Example
-      - type: Examples
-        url: examples/nominatim-details-example.json
-        title: Details Example
-      - type: Examples
-        url: examples/nominatim-status-example.json
-        title: Status Example
-      - type: Examples
-        url: examples/nominatim-place-example.json
-        title: Place JSON-LD Example
-      - type: Examples
-        url: examples/nominatim-address-example.json
-        title: Address JSON-LD Example
-      - type: RateLimits
-        url: rate-limits/nominatim-rate-limits.yml
-      - type: Plans
-        url: plans/nominatim-plans-pricing.yml
-      - type: SDKs
-        url: https://pypi.org/project/nominatim-api/
-        title: Nominatim Python API
-      - type: SDKs
-        url: https://pypi.org/project/geopy/
-        title: geopy (Python, includes Nominatim geocoder)
+- aid: nominatim:nominatim-deletable-api
+  name: Nominatim Deletable API
+  description: Objects removed from OpenStreetMap but retained in Nominatim.
+  humanURL: https://nominatim.org/release-docs/develop/api/Overview/
+  baseURL: https://nominatim.openstreetmap.org
+  tags:
+  - Deletable
+  properties:
+  - type: OpenAPI
+    url: openapi/nominatim-deletable-api-openapi.yml
+  - type: Documentation
+    url: https://nominatim.org/release-docs/develop/api/Overview/
+  - type: APIReference
+    url: https://nominatim.org/release-docs/develop/api/Search/
+  - type: JSONSchema
+    url: json-schema/nominatim-place-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-address-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-place-details-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-status-schema.json
+  - type: JSONStructure
+    url: json-structure/nominatim-place-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-address-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-status-structure.json
+  - type: JSONLD
+    url: json-ld/nominatim-context.jsonld
+  - type: Examples
+    url: examples/nominatim-search-example.json
+  - type: Examples
+    url: examples/nominatim-reverse-example.json
+  - type: Examples
+    url: examples/nominatim-lookup-example.json
+  - type: Examples
+    url: examples/nominatim-details-example.json
+  - type: Examples
+    url: examples/nominatim-status-example.json
+  - type: Examples
+    url: examples/nominatim-place-example.json
+  - type: Examples
+    url: examples/nominatim-address-example.json
+  - type: RateLimits
+    url: rate-limits/nominatim-rate-limits.yml
+  - type: Plans
+    url: plans/nominatim-plans-pricing.yml
+  - type: SDKs
+    url: https://pypi.org/project/nominatim-api/
+  - type: SDKs
+    url: https://pypi.org/project/geopy/
+- aid: nominatim:nominatim-details-api
+  name: Nominatim Details API
+  description: Internal place details, intended for debugging.
+  humanURL: https://nominatim.org/release-docs/develop/api/Overview/
+  baseURL: https://nominatim.openstreetmap.org
+  tags:
+  - Details
+  properties:
+  - type: OpenAPI
+    url: openapi/nominatim-details-api-openapi.yml
+  - type: Documentation
+    url: https://nominatim.org/release-docs/develop/api/Overview/
+  - type: APIReference
+    url: https://nominatim.org/release-docs/develop/api/Search/
+  - type: JSONSchema
+    url: json-schema/nominatim-place-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-address-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-place-details-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-status-schema.json
+  - type: JSONStructure
+    url: json-structure/nominatim-place-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-address-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-status-structure.json
+  - type: JSONLD
+    url: json-ld/nominatim-context.jsonld
+  - type: Examples
+    url: examples/nominatim-search-example.json
+  - type: Examples
+    url: examples/nominatim-reverse-example.json
+  - type: Examples
+    url: examples/nominatim-lookup-example.json
+  - type: Examples
+    url: examples/nominatim-details-example.json
+  - type: Examples
+    url: examples/nominatim-status-example.json
+  - type: Examples
+    url: examples/nominatim-place-example.json
+  - type: Examples
+    url: examples/nominatim-address-example.json
+  - type: RateLimits
+    url: rate-limits/nominatim-rate-limits.yml
+  - type: Plans
+    url: plans/nominatim-plans-pricing.yml
+  - type: SDKs
+    url: https://pypi.org/project/nominatim-api/
+  - type: SDKs
+    url: https://pypi.org/project/geopy/
+- aid: nominatim:nominatim-lookup-api
+  name: Nominatim Lookup API
+  description: Look up address details for OSM objects by their OSM ID.
+  humanURL: https://nominatim.org/release-docs/develop/api/Overview/
+  baseURL: https://nominatim.openstreetmap.org
+  tags:
+  - Lookup
+  properties:
+  - type: OpenAPI
+    url: openapi/nominatim-lookup-api-openapi.yml
+  - type: Documentation
+    url: https://nominatim.org/release-docs/develop/api/Overview/
+  - type: APIReference
+    url: https://nominatim.org/release-docs/develop/api/Search/
+  - type: JSONSchema
+    url: json-schema/nominatim-place-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-address-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-place-details-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-status-schema.json
+  - type: JSONStructure
+    url: json-structure/nominatim-place-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-address-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-status-structure.json
+  - type: JSONLD
+    url: json-ld/nominatim-context.jsonld
+  - type: Examples
+    url: examples/nominatim-search-example.json
+  - type: Examples
+    url: examples/nominatim-reverse-example.json
+  - type: Examples
+    url: examples/nominatim-lookup-example.json
+  - type: Examples
+    url: examples/nominatim-details-example.json
+  - type: Examples
+    url: examples/nominatim-status-example.json
+  - type: Examples
+    url: examples/nominatim-place-example.json
+  - type: Examples
+    url: examples/nominatim-address-example.json
+  - type: RateLimits
+    url: rate-limits/nominatim-rate-limits.yml
+  - type: Plans
+    url: plans/nominatim-plans-pricing.yml
+  - type: SDKs
+    url: https://pypi.org/project/nominatim-api/
+  - type: SDKs
+    url: https://pypi.org/project/geopy/
+- aid: nominatim:nominatim-polygons-api
+  name: Nominatim Polygons API
+  description: Problematic polygon data detected by the system.
+  humanURL: https://nominatim.org/release-docs/develop/api/Overview/
+  baseURL: https://nominatim.openstreetmap.org
+  tags:
+  - Polygons
+  properties:
+  - type: OpenAPI
+    url: openapi/nominatim-polygons-api-openapi.yml
+  - type: Documentation
+    url: https://nominatim.org/release-docs/develop/api/Overview/
+  - type: APIReference
+    url: https://nominatim.org/release-docs/develop/api/Search/
+  - type: JSONSchema
+    url: json-schema/nominatim-place-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-address-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-place-details-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-status-schema.json
+  - type: JSONStructure
+    url: json-structure/nominatim-place-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-address-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-status-structure.json
+  - type: JSONLD
+    url: json-ld/nominatim-context.jsonld
+  - type: Examples
+    url: examples/nominatim-search-example.json
+  - type: Examples
+    url: examples/nominatim-reverse-example.json
+  - type: Examples
+    url: examples/nominatim-lookup-example.json
+  - type: Examples
+    url: examples/nominatim-details-example.json
+  - type: Examples
+    url: examples/nominatim-status-example.json
+  - type: Examples
+    url: examples/nominatim-place-example.json
+  - type: Examples
+    url: examples/nominatim-address-example.json
+  - type: RateLimits
+    url: rate-limits/nominatim-rate-limits.yml
+  - type: Plans
+    url: plans/nominatim-plans-pricing.yml
+  - type: SDKs
+    url: https://pypi.org/project/nominatim-api/
+  - type: SDKs
+    url: https://pypi.org/project/geopy/
+- aid: nominatim:nominatim-reverse-api
+  name: Nominatim Reverse API
+  description: Reverse geocoding — find the closest OSM object to a coordinate.
+  humanURL: https://nominatim.org/release-docs/develop/api/Overview/
+  baseURL: https://nominatim.openstreetmap.org
+  tags:
+  - Reverse
+  properties:
+  - type: OpenAPI
+    url: openapi/nominatim-reverse-api-openapi.yml
+  - type: Documentation
+    url: https://nominatim.org/release-docs/develop/api/Overview/
+  - type: APIReference
+    url: https://nominatim.org/release-docs/develop/api/Search/
+  - type: JSONSchema
+    url: json-schema/nominatim-place-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-address-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-place-details-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-status-schema.json
+  - type: JSONStructure
+    url: json-structure/nominatim-place-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-address-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-status-structure.json
+  - type: JSONLD
+    url: json-ld/nominatim-context.jsonld
+  - type: Examples
+    url: examples/nominatim-search-example.json
+  - type: Examples
+    url: examples/nominatim-reverse-example.json
+  - type: Examples
+    url: examples/nominatim-lookup-example.json
+  - type: Examples
+    url: examples/nominatim-details-example.json
+  - type: Examples
+    url: examples/nominatim-status-example.json
+  - type: Examples
+    url: examples/nominatim-place-example.json
+  - type: Examples
+    url: examples/nominatim-address-example.json
+  - type: RateLimits
+    url: rate-limits/nominatim-rate-limits.yml
+  - type: Plans
+    url: plans/nominatim-plans-pricing.yml
+  - type: SDKs
+    url: https://pypi.org/project/nominatim-api/
+  - type: SDKs
+    url: https://pypi.org/project/geopy/
+- aid: nominatim:nominatim-search-api
+  name: Nominatim Search API
+  description: Forward geocoding — search OSM objects by name or address.
+  humanURL: https://nominatim.org/release-docs/develop/api/Overview/
+  baseURL: https://nominatim.openstreetmap.org
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/nominatim-search-api-openapi.yml
+  - type: Documentation
+    url: https://nominatim.org/release-docs/develop/api/Overview/
+  - type: APIReference
+    url: https://nominatim.org/release-docs/develop/api/Search/
+  - type: JSONSchema
+    url: json-schema/nominatim-place-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-address-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-place-details-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-status-schema.json
+  - type: JSONStructure
+    url: json-structure/nominatim-place-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-address-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-status-structure.json
+  - type: JSONLD
+    url: json-ld/nominatim-context.jsonld
+  - type: Examples
+    url: examples/nominatim-search-example.json
+  - type: Examples
+    url: examples/nominatim-reverse-example.json
+  - type: Examples
+    url: examples/nominatim-lookup-example.json
+  - type: Examples
+    url: examples/nominatim-details-example.json
+  - type: Examples
+    url: examples/nominatim-status-example.json
+  - type: Examples
+    url: examples/nominatim-place-example.json
+  - type: Examples
+    url: examples/nominatim-address-example.json
+  - type: RateLimits
+    url: rate-limits/nominatim-rate-limits.yml
+  - type: Plans
+    url: plans/nominatim-plans-pricing.yml
+  - type: SDKs
+    url: https://pypi.org/project/nominatim-api/
+  - type: SDKs
+    url: https://pypi.org/project/geopy/
+- aid: nominatim:nominatim-status-api
+  name: Nominatim Status API
+  description: Service and database status reporting.
+  humanURL: https://nominatim.org/release-docs/develop/api/Overview/
+  baseURL: https://nominatim.openstreetmap.org
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/nominatim-status-api-openapi.yml
+  - type: Documentation
+    url: https://nominatim.org/release-docs/develop/api/Overview/
+  - type: APIReference
+    url: https://nominatim.org/release-docs/develop/api/Search/
+  - type: JSONSchema
+    url: json-schema/nominatim-place-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-address-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-place-details-schema.json
+  - type: JSONSchema
+    url: json-schema/nominatim-status-schema.json
+  - type: JSONStructure
+    url: json-structure/nominatim-place-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-address-structure.json
+  - type: JSONStructure
+    url: json-structure/nominatim-status-structure.json
+  - type: JSONLD
+    url: json-ld/nominatim-context.jsonld
+  - type: Examples
+    url: examples/nominatim-search-example.json
+  - type: Examples
+    url: examples/nominatim-reverse-example.json
+  - type: Examples
+    url: examples/nominatim-lookup-example.json
+  - type: Examples
+    url: examples/nominatim-details-example.json
+  - type: Examples
+    url: examples/nominatim-status-example.json
+  - type: Examples
+    url: examples/nominatim-place-example.json
+  - type: Examples
+    url: examples/nominatim-address-example.json
+  - type: RateLimits
+    url: rate-limits/nominatim-rate-limits.yml
+  - type: Plans
+    url: plans/nominatim-plans-pricing.yml
+  - type: SDKs
+    url: https://pypi.org/project/nominatim-api/
+  - type: SDKs
+    url: https://pypi.org/project/geopy/
 common:
   - type: AgenticAccess
     url: agentic-access/nominatim-agentic-access.yml
