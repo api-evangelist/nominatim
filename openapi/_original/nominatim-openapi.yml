@@ -1,0 +1,829 @@
+openapi: 3.0.3
+info:
+  title: Nominatim API
+  description: |
+    Nominatim is an open-source search engine for OpenStreetMap data. It can be
+    used to find places by name and address (forward geocoding) and to derive
+    address information from coordinates (reverse geocoding). Nominatim is
+    developed under the BSD 2-Clause license by the OpenStreetMap Search team
+    (osm-search) and is hosted at https://nominatim.openstreetmap.org by the
+    OpenStreetMap Foundation as a free public service.
+
+    Self-hosted deployments are common; commercial hosted Nominatim is also
+    available from MapTiler, LocationIQ, and Geocode Earth, among others.
+
+    Use of the public OSMF instance is governed by the Nominatim Usage Policy:
+    https://operations.osmfoundation.org/policies/nominatim/ — a hard limit of
+    no more than 1 request per second is enforced across all your traffic, and
+    a meaningful HTTP User-Agent identifying your application is required.
+  version: 4.5.0
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/osm-search/Nominatim/blob/master/COPYING
+  contact:
+    name: OpenStreetMap Search Team
+    url: https://nominatim.org/
+  termsOfService: https://operations.osmfoundation.org/policies/nominatim/
+servers:
+  - url: https://nominatim.openstreetmap.org
+    description: Public Nominatim instance operated by the OpenStreetMap Foundation
+  - url: https://{host}
+    description: Self-hosted Nominatim instance
+    variables:
+      host:
+        default: nominatim.example.org
+        description: Hostname of a self-hosted Nominatim deployment
+tags:
+  - name: Search
+    description: Forward geocoding — search OSM objects by name or address.
+  - name: Reverse
+    description: Reverse geocoding — find the closest OSM object to a coordinate.
+  - name: Lookup
+    description: Look up address details for OSM objects by their OSM ID.
+  - name: Details
+    description: Internal place details, intended for debugging.
+  - name: Status
+    description: Service and database status reporting.
+  - name: Deletable
+    description: Objects removed from OpenStreetMap but retained in Nominatim.
+  - name: Polygons
+    description: Problematic polygon data detected by the system.
+paths:
+  /search:
+    get:
+      operationId: search
+      tags: [Search]
+      summary: Search OSM Objects By Name Or Address
+      description: |
+        Forward-geocode a free-form or structured query and return matching
+        OSM objects. Use the free-form `q` parameter or one of the structured
+        parameters (`amenity`, `street`, `city`, `county`, `state`, `country`,
+        `postalcode`) — the two query styles cannot be combined.
+      parameters:
+        - $ref: '#/components/parameters/Query'
+        - $ref: '#/components/parameters/Amenity'
+        - $ref: '#/components/parameters/Street'
+        - $ref: '#/components/parameters/City'
+        - $ref: '#/components/parameters/County'
+        - $ref: '#/components/parameters/State'
+        - $ref: '#/components/parameters/Country'
+        - $ref: '#/components/parameters/Postalcode'
+        - $ref: '#/components/parameters/Format'
+        - $ref: '#/components/parameters/JsonCallback'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/AddressDetails'
+        - $ref: '#/components/parameters/ExtraTags'
+        - $ref: '#/components/parameters/NameDetails'
+        - $ref: '#/components/parameters/AcceptLanguage'
+        - $ref: '#/components/parameters/CountryCodes'
+        - $ref: '#/components/parameters/ExcludePlaceIds'
+        - $ref: '#/components/parameters/Viewbox'
+        - $ref: '#/components/parameters/Bounded'
+        - $ref: '#/components/parameters/PolygonGeoJSON'
+        - $ref: '#/components/parameters/PolygonKML'
+        - $ref: '#/components/parameters/PolygonSVG'
+        - $ref: '#/components/parameters/PolygonText'
+        - $ref: '#/components/parameters/PolygonThreshold'
+        - $ref: '#/components/parameters/Dedupe'
+        - $ref: '#/components/parameters/Layer'
+        - $ref: '#/components/parameters/FeatureType'
+        - $ref: '#/components/parameters/Email'
+        - $ref: '#/components/parameters/Debug'
+      responses:
+        '200':
+          description: A list of matching places.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Place'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /reverse:
+    get:
+      operationId: reverse
+      tags: [Reverse]
+      summary: Reverse Geocode A Coordinate
+      description: |
+        Find the closest OSM object to a latitude/longitude pair and return its
+        address information. The result is the closest suitable feature for the
+        requested zoom level rather than a literal address for the exact point.
+      parameters:
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/Zoom'
+        - $ref: '#/components/parameters/Format'
+        - $ref: '#/components/parameters/JsonCallback'
+        - $ref: '#/components/parameters/AddressDetails'
+        - $ref: '#/components/parameters/ExtraTags'
+        - $ref: '#/components/parameters/NameDetails'
+        - $ref: '#/components/parameters/AcceptLanguage'
+        - $ref: '#/components/parameters/Layer'
+        - $ref: '#/components/parameters/PolygonGeoJSON'
+        - $ref: '#/components/parameters/PolygonKML'
+        - $ref: '#/components/parameters/PolygonSVG'
+        - $ref: '#/components/parameters/PolygonText'
+        - $ref: '#/components/parameters/PolygonThreshold'
+        - $ref: '#/components/parameters/Email'
+        - $ref: '#/components/parameters/Debug'
+      responses:
+        '200':
+          description: A single matching place.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Place'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /lookup:
+    get:
+      operationId: lookup
+      tags: [Lookup]
+      summary: Look Up Address Details For OSM Objects
+      description: |
+        Look up address details for one or more OSM objects identified by their
+        OSM type and ID. Up to 50 IDs may be passed per request.
+      parameters:
+        - name: osm_ids
+          in: query
+          required: true
+          description: |
+            Comma-separated list of OSM IDs each prefixed with type
+            (N=node, W=way, R=relation). Maximum 50 IDs per request.
+          schema:
+            type: string
+            example: R146656,W104393803,N240109189
+        - $ref: '#/components/parameters/Format'
+        - $ref: '#/components/parameters/JsonCallback'
+        - $ref: '#/components/parameters/AddressDetails'
+        - $ref: '#/components/parameters/ExtraTags'
+        - $ref: '#/components/parameters/NameDetails'
+        - $ref: '#/components/parameters/AcceptLanguage'
+        - $ref: '#/components/parameters/PolygonGeoJSON'
+        - $ref: '#/components/parameters/PolygonKML'
+        - $ref: '#/components/parameters/PolygonSVG'
+        - $ref: '#/components/parameters/PolygonText'
+        - $ref: '#/components/parameters/PolygonThreshold'
+        - $ref: '#/components/parameters/Email'
+        - $ref: '#/components/parameters/Debug'
+      responses:
+        '200':
+          description: An array of matching places.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Place'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /details:
+    get:
+      operationId: details
+      tags: [Details]
+      summary: Show Internal Place Details
+      description: |
+        Show internal details for an object. Intended for debugging — the
+        endpoint is not part of the stable API surface and the place_id is not
+        portable across Nominatim installations.
+      parameters:
+        - name: osmtype
+          in: query
+          description: OSM object type (N=node, W=way, R=relation).
+          schema:
+            type: string
+            enum: [N, W, R]
+        - name: osmid
+          in: query
+          description: OSM object ID.
+          schema:
+            type: integer
+            format: int64
+        - name: class
+          in: query
+          description: |
+            Optional OSM tag key used to disambiguate between multiple places
+            originating from the same OSM object.
+          schema:
+            type: string
+        - name: place_id
+          in: query
+          description: |
+            Internal Nominatim place identifier. Not portable across Nominatim
+            instances.
+          schema:
+            type: integer
+            format: int64
+        - $ref: '#/components/parameters/JsonCallback'
+        - $ref: '#/components/parameters/Format'
+        - name: addressdetails
+          in: query
+          description: Include a breakdown of the address into elements.
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+        - name: keywords
+          in: query
+          description: Include name and address keywords used for indexing.
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+        - name: linkedplaces
+          in: query
+          description: Include details for linked places.
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 1
+        - name: hierarchy
+          in: query
+          description: Include dependent POIs and addresses.
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+        - name: group_hierarchy
+          in: query
+          description: Group the hierarchy output by element type.
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+        - $ref: '#/components/parameters/PolygonGeoJSON'
+        - $ref: '#/components/parameters/AcceptLanguage'
+      responses:
+        '200':
+          description: Internal place details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceDetails'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /status:
+    get:
+      operationId: status
+      tags: [Status]
+      summary: Report Service And Database Status
+      description: |
+        Report on the state of the Nominatim service and its underlying
+        database. Useful for health checks.
+      parameters:
+        - name: format
+          in: query
+          description: Response format.
+          schema:
+            type: string
+            enum: [text, json]
+            default: text
+      responses:
+        '200':
+          description: Service is healthy. JSON response includes data update timestamp and versions.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+        '500':
+          description: Service or database error (text format only).
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'ERROR: Database connection failed'
+  /deletable:
+    get:
+      operationId: deletable
+      tags: [Deletable]
+      summary: List Objects Deleted From OSM But Retained In Nominatim
+      description: |
+        List OSM objects that have been deleted upstream in OpenStreetMap but
+        are still present in the Nominatim database. Used for data quality
+        monitoring.
+      responses:
+        '200':
+          description: HTML or JSON listing of deletable objects.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /polygons:
+    get:
+      operationId: polygons
+      tags: [Polygons]
+      summary: List Problematic Polygon Geometries
+      description: |
+        List polygons whose geometries the Nominatim importer flagged as
+        broken or otherwise problematic. Used for data quality monitoring.
+      responses:
+        '200':
+          description: HTML or JSON listing of problematic polygons.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+components:
+  parameters:
+    Query:
+      name: q
+      in: query
+      description: Free-form query string. Cannot be combined with structured query parameters.
+      schema:
+        type: string
+        example: 135 pilkington avenue, birmingham
+    Amenity:
+      name: amenity
+      in: query
+      description: Name or type of point of interest.
+      schema:
+        type: string
+    Street:
+      name: street
+      in: query
+      description: House number and street name.
+      schema:
+        type: string
+    City:
+      name: city
+      in: query
+      schema:
+        type: string
+    County:
+      name: county
+      in: query
+      schema:
+        type: string
+    State:
+      name: state
+      in: query
+      schema:
+        type: string
+    Country:
+      name: country
+      in: query
+      schema:
+        type: string
+    Postalcode:
+      name: postalcode
+      in: query
+      schema:
+        type: string
+    Lat:
+      name: lat
+      in: query
+      required: true
+      description: Latitude of the coordinate to reverse geocode (WGS84).
+      schema:
+        type: number
+        format: double
+        minimum: -90
+        maximum: 90
+        example: 52.5487429714954
+    Lon:
+      name: lon
+      in: query
+      required: true
+      description: Longitude of the coordinate to reverse geocode (WGS84).
+      schema:
+        type: number
+        format: double
+        minimum: -180
+        maximum: 180
+        example: -1.81602098644987
+    Zoom:
+      name: zoom
+      in: query
+      description: |
+        Level of administrative detail required. 3=country, 5=state, 8=county,
+        10=city, 12=town/borough, 13=village/suburb, 14=neighbourhood, 15=any
+        settlement, 16=major streets, 17=major and minor streets, 18=building.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 18
+        default: 18
+    Format:
+      name: format
+      in: query
+      description: Output format.
+      schema:
+        type: string
+        enum: [xml, json, jsonv2, geojson, geocodejson]
+        default: jsonv2
+    JsonCallback:
+      name: json_callback
+      in: query
+      description: Wrap JSON output in a JSONP callback.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of returned results.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 40
+        default: 10
+    AddressDetails:
+      name: addressdetails
+      in: query
+      description: Include a breakdown of the address into elements.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    ExtraTags:
+      name: extratags
+      in: query
+      description: Include additional information (Wikipedia link, opening hours, etc.).
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    NameDetails:
+      name: namedetails
+      in: query
+      description: Include a full list of names for the result.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    AcceptLanguage:
+      name: accept-language
+      in: query
+      description: |
+        Preferred language order for showing search results, in browser-style
+        format (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language
+        header.
+      schema:
+        type: string
+    CountryCodes:
+      name: countrycodes
+      in: query
+      description: Comma-separated list of ISO 3166-1 alpha-2 country codes to limit results to.
+      schema:
+        type: string
+        example: us,ca,mx
+    ExcludePlaceIds:
+      name: exclude_place_ids
+      in: query
+      description: Comma-separated list of place IDs to exclude from the result set.
+      schema:
+        type: string
+    Viewbox:
+      name: viewbox
+      in: query
+      description: |
+        Bounding box `x1,y1,x2,y2` (longitudes and latitudes) used to bias
+        results toward a geographic area.
+      schema:
+        type: string
+        example: '-180,-90,180,90'
+    Bounded:
+      name: bounded
+      in: query
+      description: When set, restrict results strictly to the viewbox.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    PolygonKML:
+      name: polygon_kml
+      in: query
+      description: Output geometry as KML.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    PolygonSVG:
+      name: polygon_svg
+      in: query
+      description: Output geometry as SVG.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    PolygonText:
+      name: polygon_text
+      in: query
+      description: Output geometry as WKT.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    PolygonThreshold:
+      name: polygon_threshold
+      in: query
+      description: Simplification tolerance for polygon output, in degrees.
+      schema:
+        type: number
+        format: double
+        minimum: 0
+        default: 0
+    Dedupe:
+      name: dedupe
+      in: query
+      description: Remove duplicate hits from the result set.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    Layer:
+      name: layer
+      in: query
+      description: |
+        Restrict results to one or more feature layers. Comma-separated list of
+        `address`, `poi`, `railway`, `natural`, `manmade`.
+      schema:
+        type: string
+        example: address,poi
+    FeatureType:
+      name: featureType
+      in: query
+      description: Restrict search results to a single feature type.
+      schema:
+        type: string
+        enum: [country, state, city, settlement]
+    Email:
+      name: email
+      in: query
+      description: |
+        Email address identifying you when making high-volume requests. Required
+        by the OSMF usage policy at sustained traffic levels.
+      schema:
+        type: string
+        format: email
+    Debug:
+      name: debug
+      in: query
+      description: Return verbose HTML output containing internal debugging information.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: |
+        Rate limit exceeded. The public Nominatim instance enforces a hard
+        ceiling of 1 request per second across all your traffic. See
+        https://operations.osmfoundation.org/policies/nominatim/.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Place:
+      type: object
+      description: A single Nominatim place result.
+      properties:
+        place_id:
+          type: integer
+          format: int64
+          description: Internal Nominatim place ID. Not portable across installations.
+        licence:
+          type: string
+          description: Licence and attribution text for the returned data.
+          example: Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright
+        osm_type:
+          type: string
+          enum: [node, way, relation]
+        osm_id:
+          type: integer
+          format: int64
+        boundingbox:
+          type: array
+          description: '[min_lat, max_lat, min_lon, max_lon] as strings.'
+          items:
+            type: string
+          minItems: 4
+          maxItems: 4
+        lat:
+          type: string
+          description: Latitude of the centroid.
+        lon:
+          type: string
+          description: Longitude of the centroid.
+        display_name:
+          type: string
+          description: Full, comma-separated address.
+        class:
+          type: string
+          description: Main OSM tag key for this object (jsonv2 renames this to `category`).
+        category:
+          type: string
+          description: Main OSM tag key for this object (jsonv2 only).
+        type:
+          type: string
+          description: Main OSM tag value for this object.
+        place_rank:
+          type: integer
+          description: Search rank of the object (jsonv2 only).
+        importance:
+          type: number
+          format: double
+          description: Computed importance rank for ordering results.
+        addresstype:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          description: URL of an icon representing the result class.
+        address:
+          $ref: '#/components/schemas/Address'
+        extratags:
+          type: object
+          additionalProperties:
+            type: string
+        namedetails:
+          type: object
+          additionalProperties:
+            type: string
+        geojson:
+          type: object
+          description: GeoJSON geometry of the result (when polygon_geojson=1).
+    Address:
+      type: object
+      description: Structured address breakdown for a place.
+      properties:
+        house_number:
+          type: string
+        road:
+          type: string
+        neighbourhood:
+          type: string
+        suburb:
+          type: string
+        city:
+          type: string
+        town:
+          type: string
+        village:
+          type: string
+        municipality:
+          type: string
+        county:
+          type: string
+        state_district:
+          type: string
+        state:
+          type: string
+        postcode:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code, lowercase.
+      additionalProperties:
+        type: string
+    PlaceDetails:
+      type: object
+      description: Verbose internal details for a single place.
+      properties:
+        place_id:
+          type: integer
+          format: int64
+        parent_place_id:
+          type: integer
+          format: int64
+        osm_type:
+          type: string
+        osm_id:
+          type: integer
+          format: int64
+        category:
+          type: string
+        type:
+          type: string
+        admin_level:
+          type: integer
+        localname:
+          type: string
+        names:
+          type: object
+          additionalProperties:
+            type: string
+        addresstags:
+          type: object
+          additionalProperties:
+            type: string
+        extratags:
+          type: object
+          additionalProperties:
+            type: string
+        calculated_postcode:
+          type: string
+        country_code:
+          type: string
+        indexed_date:
+          type: string
+          format: date-time
+        importance:
+          type: number
+          format: double
+        calculated_importance:
+          type: number
+          format: double
+        rank_address:
+          type: integer
+        rank_search:
+          type: integer
+        isarea:
+          type: boolean
+        centroid:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+                format: double
+              minItems: 2
+              maxItems: 2
+        geometry:
+          type: object
+          description: GeoJSON geometry (when polygon_geojson=1).
+        address:
+          type: array
+          items:
+            type: object
+        keywords:
+          type: object
+        hierarchy:
+          type: object
+        linked_places:
+          type: array
+          items:
+            type: object
+    Status:
+      type: object
+      description: Service and database status.
+      properties:
+        status:
+          type: integer
+          description: Numeric status code (0 means OK).
+          example: 0
+        message:
+          type: string
+          example: OK
+        data_updated:
+          type: string
+          format: date-time
+          example: '2026-05-04T14:47:00+00:00'
+        software_version:
+          type: string
+          example: 4.5.0
+        database_version:
+          type: string
+          example: 4.5.0
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string

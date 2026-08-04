@@ -1,0 +1,26 @@
+{
+  "provider": "nominatim",
+  "sources": [
+    "nominatim-deletable-api-openapi.yml",
+    "nominatim-details-api-openapi.yml",
+    "nominatim-lookup-api-openapi.yml",
+    "nominatim-polygons-api-openapi.yml",
+    "nominatim-reverse-api-openapi.yml",
+    "nominatim-search-api-openapi.yml",
+    "nominatim-status-api-openapi.yml"
+  ],
+  "outputs": [
+    "nominatim-deletable-api-openapi.yml",
+    "nominatim-details-api-openapi.yml",
+    "nominatim-lookup-api-openapi.yml",
+    "nominatim-polygons-api-openapi.yml",
+    "nominatim-reverse-api-openapi.yml",
+    "nominatim-search-api-openapi.yml",
+    "nominatim-status-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
