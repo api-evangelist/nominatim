@@ -402,6 +402,17 @@ apis:
   - type: SDKs
     url: https://pypi.org/project/geopy/
 common:
+  - type: IssueTracker
+    url: https://github.com/osm-search/Nominatim/issues
+  - type: Releases
+    url: https://github.com/osm-search/Nominatim/releases
+  - type: SecurityPolicy
+    url: https://github.com/osm-search/Nominatim/blob/master/SECURITY.md
+  - type: ContributionGuide
+    url: https://github.com/osm-search/Nominatim/blob/master/CONTRIBUTING.md
+  - type: License
+    name: GPL-3.0
+    url: https://github.com/osm-search/Nominatim/blob/master/LICENSE
   - type: AgenticAccess
     url: agentic-access/nominatim-agentic-access.yml
   - type: DomainSecurity
