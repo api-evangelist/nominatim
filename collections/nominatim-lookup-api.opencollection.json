@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nominatim Deletable Lookup API",
+    "version": "4.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look Up Address Details For OSM Objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/lookup",
+            "params": [
+              {
+                "name": "osm_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of OSM IDs each prefixed with type\n(N=node, W=way, R=relation). Maximum 50 IDs per request.\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "json_callback",
+                "value": "",
+                "type": "query",
+                "description": "Wrap JSON output in a JSONP callback."
+              },
+              {
+                "name": "addressdetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a breakdown of the address into elements."
+              },
+              {
+                "name": "extratags",
+                "value": "",
+                "type": "query",
+                "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+              },
+              {
+                "name": "namedetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a full list of names for the result."
+              },
+              {
+                "name": "accept-language",
+                "value": "",
+                "type": "query",
+                "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+              },
+              {
+                "name": "polygon_geojson",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as GeoJSON."
+              },
+              {
+                "name": "polygon_kml",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as KML."
+              },
+              {
+                "name": "polygon_svg",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as SVG."
+              },
+              {
+                "name": "polygon_text",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as WKT."
+              },
+              {
+                "name": "polygon_threshold",
+                "value": "",
+                "type": "query",
+                "description": "Simplification tolerance for polygon output, in degrees."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "Return verbose HTML output containing internal debugging information."
+              }
+            ]
+          },
+          "docs": "Look up address details for one or more OSM objects identified by their\nOSM type and ID. Up to 50 IDs may be passed per request.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nominatim Deletable Reverse API",
+    "version": "4.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reverse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reverse Geocode A Coordinate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/reverse",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the coordinate to reverse geocode (WGS84)."
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the coordinate to reverse geocode (WGS84)."
+              },
+              {
+                "name": "zoom",
+                "value": "",
+                "type": "query",
+                "description": "Level of administrative detail required. 3=country, 5=state, 8=county,\n10=city, 12=town/borough, 13=village/suburb, 14=neighbourhood, 15=any\nsettlement, 16=major streets, 17=major and minor streets, 18=building.\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "json_callback",
+                "value": "",
+                "type": "query",
+                "description": "Wrap JSON output in a JSONP callback."
+              },
+              {
+                "name": "addressdetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a breakdown of the address into elements."
+              },
+              {
+                "name": "extratags",
+                "value": "",
+                "type": "query",
+                "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+              },
+              {
+                "name": "namedetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a full list of names for the result."
+              },
+              {
+                "name": "accept-language",
+                "value": "",
+                "type": "query",
+                "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+              },
+              {
+                "name": "layer",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to one or more feature layers. Comma-separated list of\n`address`, `poi`, `railway`, `natural`, `manmade`.\n"
+              },
+              {
+                "name": "polygon_geojson",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as GeoJSON."
+              },
+              {
+                "name": "polygon_kml",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as KML."
+              },
+              {
+                "name": "polygon_svg",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as SVG."
+              },
+              {
+                "name": "polygon_text",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as WKT."
+              },
+              {
+                "name": "polygon_threshold",
+                "value": "",
+                "type": "query",
+                "description": "Simplification tolerance for polygon output, in degrees."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "Return verbose HTML output containing internal debugging information."
+              }
+            ]
+          },
+          "docs": "Find the closest OSM object to a latitude/longitude pair and return its\naddress information. The result is the closest suitable feature for the\nrequested zoom level rather than a literal address for the exact point.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

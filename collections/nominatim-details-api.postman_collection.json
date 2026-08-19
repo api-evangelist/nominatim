@@ -1,0 +1,322 @@
+{
+  "item": [
+    {
+      "id": "0196f09b-cdc3-46fb-8431-24ad3c6e7aaa",
+      "name": "Details",
+      "description": {
+        "content": "Internal place details, intended for debugging.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cca59ee5-0067-4e67-88d8-9551a9c40a23",
+          "name": "Show Internal Place Details",
+          "request": {
+            "name": "Show Internal Place Details",
+            "description": {
+              "content": "Show internal details for an object. Intended for debugging — the\nendpoint is not part of the stable API surface and the place_id is not\nportable across Nominatim installations.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "osmtype",
+                  "value": "<string>",
+                  "description": "OSM object type (N=node, W=way, R=relation)."
+                },
+                {
+                  "disabled": false,
+                  "key": "osmid",
+                  "value": "<long>",
+                  "description": "OSM object ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "class",
+                  "value": "<string>",
+                  "description": "Optional OSM tag key used to disambiguate between multiple places\noriginating from the same OSM object.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "place_id",
+                  "value": "<long>",
+                  "description": "Internal Nominatim place identifier. Not portable across Nominatim\ninstances.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "json_callback",
+                  "value": "<string>",
+                  "description": "Wrap JSON output in a JSONP callback."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "jsonv2",
+                  "description": "Output format."
+                },
+                {
+                  "disabled": false,
+                  "key": "addressdetails",
+                  "value": "0",
+                  "description": "Include a breakdown of the address into elements."
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "0",
+                  "description": "Include name and address keywords used for indexing."
+                },
+                {
+                  "disabled": false,
+                  "key": "linkedplaces",
+                  "value": "1",
+                  "description": "Include details for linked places."
+                },
+                {
+                  "disabled": false,
+                  "key": "hierarchy",
+                  "value": "0",
+                  "description": "Include dependent POIs and addresses."
+                },
+                {
+                  "disabled": false,
+                  "key": "group_hierarchy",
+                  "value": "0",
+                  "description": "Group the hierarchy output by element type."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_geojson",
+                  "value": "0",
+                  "description": "Output geometry as GeoJSON."
+                },
+                {
+                  "disabled": false,
+                  "key": "accept-language",
+                  "value": "<string>",
+                  "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1adffa7c-a6b4-4f9f-a950-a0131c0e2036",
+              "name": "Internal place details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "osmtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osmid",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "place_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "0"
+                    },
+                    {
+                      "key": "linkedplaces",
+                      "value": "1"
+                    },
+                    {
+                      "key": "hierarchy",
+                      "value": "0"
+                    },
+                    {
+                      "key": "group_hierarchy",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"place_id\": 8570,\n  \"parent_place_id\": 6680,\n  \"osm_type\": \"string\",\n  \"osm_id\": 6122,\n  \"category\": \"string\",\n  \"type\": \"string\",\n  \"admin_level\": 1278,\n  \"localname\": \"string\",\n  \"names\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"addresstags\": {\n    \"key_0\": \"string\"\n  },\n  \"extratags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"calculated_postcode\": \"string\",\n  \"country_code\": \"string\",\n  \"indexed_date\": \"2021-03-30T00:22:28.313Z\",\n  \"importance\": 4684.92065288453,\n  \"calculated_importance\": 8816.494681005179,\n  \"rank_address\": 5634,\n  \"rank_search\": 3228,\n  \"isarea\": true,\n  \"centroid\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      8924.107669740471,\n      1154.8499915987366\n    ]\n  },\n  \"geometry\": {},\n  \"keywords\": {},\n  \"hierarchy\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9b4cc1e-404a-4217-8229-ae7b1402e7d3",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "osmtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osmid",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "place_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "0"
+                    },
+                    {
+                      "key": "linkedplaces",
+                      "value": "1"
+                    },
+                    {
+                      "key": "hierarchy",
+                      "value": "0"
+                    },
+                    {
+                      "key": "group_hierarchy",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 2912,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://nominatim.openstreetmap.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "61c02a20-dfc4-4c3c-9a3a-9f980b0092d2",
+    "name": "Nominatim Deletable Details API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nominatim is an open-source search engine for OpenStreetMap data. It can be\nused to find places by name and address (forward geocoding) and to derive\naddress information from coordinates (reverse geocoding). Nominatim is\ndeveloped under the BSD 2-Clause license by the OpenStreetMap Search team\n(osm-search) and is hosted at https://nominatim.openstreetmap.org by the\nOpenStreetMap Foundation as a free public service.\n\nSelf-hosted deployments are common; commercial hosted Nominatim is also\navailable from MapTiler, LocationIQ, and Geocode Earth, among others.\n\nUse of the public OSMF instance is governed by the Nominatim Usage Policy:\nhttps://operations.osmfoundation.org/policies/nominatim/ — a hard limit of\nno more than 1 request per second is enforced across all your traffic, and\na meaningful HTTP User-Agent identifying your application is required.\n\n\nContact Support:\n Name: OpenStreetMap Search Team",
+      "type": "text/plain"
+    }
+  }
+}

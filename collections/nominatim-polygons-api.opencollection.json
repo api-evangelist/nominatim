@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nominatim Deletable Polygons API",
+    "version": "4.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Polygons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Problematic Polygon Geometries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/polygons"
+          },
+          "docs": "List polygons whose geometries the Nominatim importer flagged as\nbroken or otherwise problematic. Used for data quality monitoring.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nominatim Deletable API",
+    "version": "4.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deletable",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Objects Deleted From OSM But Retained In Nominatim",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/deletable"
+          },
+          "docs": "List OSM objects that have been deleted upstream in OpenStreetMap but\nare still present in the Nominatim database. Used for data quality\nmonitoring.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

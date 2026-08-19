@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nominatim Deletable Search API",
+    "version": "4.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search OSM Objects By Name Or Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Free-form query string. Cannot be combined with structured query parameters."
+              },
+              {
+                "name": "amenity",
+                "value": "",
+                "type": "query",
+                "description": "Name or type of point of interest."
+              },
+              {
+                "name": "street",
+                "value": "",
+                "type": "query",
+                "description": "House number and street name."
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "county",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "postalcode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "json_callback",
+                "value": "",
+                "type": "query",
+                "description": "Wrap JSON output in a JSONP callback."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of returned results."
+              },
+              {
+                "name": "addressdetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a breakdown of the address into elements."
+              },
+              {
+                "name": "extratags",
+                "value": "",
+                "type": "query",
+                "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+              },
+              {
+                "name": "namedetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a full list of names for the result."
+              },
+              {
+                "name": "accept-language",
+                "value": "",
+                "type": "query",
+                "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+              },
+              {
+                "name": "countrycodes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of ISO 3166-1 alpha-2 country codes to limit results to."
+              },
+              {
+                "name": "exclude_place_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of place IDs to exclude from the result set."
+              },
+              {
+                "name": "viewbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box `x1,y1,x2,y2` (longitudes and latitudes) used to bias\nresults toward a geographic area.\n"
+              },
+              {
+                "name": "bounded",
+                "value": "",
+                "type": "query",
+                "description": "When set, restrict results strictly to the viewbox."
+              },
+              {
+                "name": "polygon_geojson",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as GeoJSON."
+              },
+              {
+                "name": "polygon_kml",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as KML."
+              },
+              {
+                "name": "polygon_svg",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as SVG."
+              },
+              {
+                "name": "polygon_text",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as WKT."
+              },
+              {
+                "name": "polygon_threshold",
+                "value": "",
+                "type": "query",
+                "description": "Simplification tolerance for polygon output, in degrees."
+              },
+              {
+                "name": "dedupe",
+                "value": "",
+                "type": "query",
+                "description": "Remove duplicate hits from the result set."
+              },
+              {
+                "name": "layer",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to one or more feature layers. Comma-separated list of\n`address`, `poi`, `railway`, `natural`, `manmade`.\n"
+              },
+              {
+                "name": "featureType",
+                "value": "",
+                "type": "query",
+                "description": "Restrict search results to a single feature type."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "Return verbose HTML output containing internal debugging information."
+              }
+            ]
+          },
+          "docs": "Forward-geocode a free-form or structured query and return matching\nOSM objects. Use the free-form `q` parameter or one of the structured\nparameters (`amenity`, `street`, `city`, `county`, `state`, `country`,\n`postalcode`) — the two query styles cannot be combined.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

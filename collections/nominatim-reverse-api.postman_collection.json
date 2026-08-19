@@ -1,0 +1,482 @@
+{
+  "item": [
+    {
+      "id": "0e13c3a8-3172-44b1-9ceb-721a10f52d34",
+      "name": "Reverse",
+      "description": {
+        "content": "Reverse geocoding — find the closest OSM object to a coordinate.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a933e34b-e4ec-4e8e-9ff4-bf8a5dbff4da",
+          "name": "Reverse Geocode A Coordinate",
+          "request": {
+            "name": "Reverse Geocode A Coordinate",
+            "description": {
+              "content": "Find the closest OSM object to a latitude/longitude pair and return its\naddress information. The result is the closest suitable feature for the\nrequested zoom level rather than a literal address for the exact point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reverse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the coordinate to reverse geocode (WGS84)."
+                },
+                {
+                  "disabled": false,
+                  "key": "lon",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the coordinate to reverse geocode (WGS84)."
+                },
+                {
+                  "disabled": false,
+                  "key": "zoom",
+                  "value": "18",
+                  "description": "Level of administrative detail required. 3=country, 5=state, 8=county,\n10=city, 12=town/borough, 13=village/suburb, 14=neighbourhood, 15=any\nsettlement, 16=major streets, 17=major and minor streets, 18=building.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "jsonv2",
+                  "description": "Output format."
+                },
+                {
+                  "disabled": false,
+                  "key": "json_callback",
+                  "value": "<string>",
+                  "description": "Wrap JSON output in a JSONP callback."
+                },
+                {
+                  "disabled": false,
+                  "key": "addressdetails",
+                  "value": "0",
+                  "description": "Include a breakdown of the address into elements."
+                },
+                {
+                  "disabled": false,
+                  "key": "extratags",
+                  "value": "0",
+                  "description": "Include additional information (Wikipedia link, opening hours, etc.)."
+                },
+                {
+                  "disabled": false,
+                  "key": "namedetails",
+                  "value": "0",
+                  "description": "Include a full list of names for the result."
+                },
+                {
+                  "disabled": false,
+                  "key": "accept-language",
+                  "value": "<string>",
+                  "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "layer",
+                  "value": "<string>",
+                  "description": "Restrict results to one or more feature layers. Comma-separated list of\n`address`, `poi`, `railway`, `natural`, `manmade`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_geojson",
+                  "value": "0",
+                  "description": "Output geometry as GeoJSON."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_kml",
+                  "value": "0",
+                  "description": "Output geometry as KML."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_svg",
+                  "value": "0",
+                  "description": "Output geometry as SVG."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_text",
+                  "value": "0",
+                  "description": "Output geometry as WKT."
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon_threshold",
+                  "value": "0",
+                  "description": "Simplification tolerance for polygon output, in degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Email address identifying you when making high-volume requests. Required\nby the OSMF usage policy at sustained traffic levels.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "debug",
+                  "value": "0",
+                  "description": "Return verbose HTML output containing internal debugging information."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2543be3-6b5e-4bf6-b81a-202013b6941e",
+              "name": "A single matching place.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "52.5487429714954"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "-1.81602098644987"
+                    },
+                    {
+                      "key": "zoom",
+                      "value": "18"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "address,poi"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"place_id\": 4648,\n  \"licence\": \"Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright\",\n  \"osm_type\": \"relation\",\n  \"osm_id\": 1113,\n  \"boundingbox\": [\n    \"string\",\n    \"string\",\n    \"string\",\n    \"string\"\n  ],\n  \"lat\": \"string\",\n  \"lon\": \"string\",\n  \"display_name\": \"string\",\n  \"class\": \"string\",\n  \"category\": \"string\",\n  \"type\": \"string\",\n  \"place_rank\": 7955,\n  \"importance\": 4458.38647425352,\n  \"addresstype\": \"string\",\n  \"name\": \"string\",\n  \"icon\": \"string\",\n  \"address\": {\n    \"house_number\": \"string\",\n    \"road\": \"string\",\n    \"neighbourhood\": \"string\",\n    \"suburb\": \"string\",\n    \"city\": \"string\",\n    \"town\": \"string\",\n    \"village\": \"string\",\n    \"municipality\": \"string\",\n    \"county\": \"string\",\n    \"state_district\": \"string\",\n    \"state\": \"string\",\n    \"postcode\": \"string\",\n    \"country\": \"string\",\n    \"country_code\": \"string\"\n  },\n  \"extratags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"namedetails\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"geojson\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0388ed1-3706-4139-b5ec-88d471e0c110",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "52.5487429714954"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "-1.81602098644987"
+                    },
+                    {
+                      "key": "zoom",
+                      "value": "18"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "address,poi"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 5131,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a21b69d-e5b0-4b1b-adde-b41021f9b93f",
+              "name": "Rate limit exceeded. The public Nominatim instance enforces a hard\nceiling of 1 request per second across all your traffic. See\nhttps://operations.osmfoundation.org/policies/nominatim/.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "52.5487429714954"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "-1.81602098644987"
+                    },
+                    {
+                      "key": "zoom",
+                      "value": "18"
+                    },
+                    {
+                      "key": "format",
+                      "value": "jsonv2"
+                    },
+                    {
+                      "key": "json_callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "addressdetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extratags",
+                      "value": "0"
+                    },
+                    {
+                      "key": "namedetails",
+                      "value": "0"
+                    },
+                    {
+                      "key": "accept-language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layer",
+                      "value": "address,poi"
+                    },
+                    {
+                      "key": "polygon_geojson",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_kml",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_svg",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_text",
+                      "value": "0"
+                    },
+                    {
+                      "key": "polygon_threshold",
+                      "value": "0"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "debug",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 5131,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://nominatim.openstreetmap.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bd13abfe-29a2-46c0-af97-6a3beb3a1a84",
+    "name": "Nominatim Deletable Reverse API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nominatim is an open-source search engine for OpenStreetMap data. It can be\nused to find places by name and address (forward geocoding) and to derive\naddress information from coordinates (reverse geocoding). Nominatim is\ndeveloped under the BSD 2-Clause license by the OpenStreetMap Search team\n(osm-search) and is hosted at https://nominatim.openstreetmap.org by the\nOpenStreetMap Foundation as a free public service.\n\nSelf-hosted deployments are common; commercial hosted Nominatim is also\navailable from MapTiler, LocationIQ, and Geocode Earth, among others.\n\nUse of the public OSMF instance is governed by the Nominatim Usage Policy:\nhttps://operations.osmfoundation.org/policies/nominatim/ — a hard limit of\nno more than 1 request per second is enforced across all your traffic, and\na meaningful HTTP User-Agent identifying your application is required.\n\n\nContact Support:\n Name: OpenStreetMap Search Team",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "item": [
+    {
+      "id": "19227b8e-3cc7-4e1f-84a5-4d63ddd4a69e",
+      "name": "Status",
+      "description": {
+        "content": "Service and database status reporting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5cded18b-2ed9-4275-8e76-59a39a2711ee",
+          "name": "Report Service And Database Status",
+          "request": {
+            "name": "Report Service And Database Status",
+            "description": {
+              "content": "Report on the state of the Nominatim service and its underlying\ndatabase. Useful for health checks.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "text",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53214f3f-9a9d-47d3-8d77-36e1bc48e352",
+              "name": "Service is healthy. JSON response includes data update timestamp and versions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "text"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"message\": \"OK\",\n  \"data_updated\": \"2026-05-04T14:47:00+00:00\",\n  \"software_version\": \"4.5.0\",\n  \"database_version\": \"4.5.0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e6b0a0e-4a30-4111-86f9-8bc3d89d37cb",
+              "name": "Service or database error (text format only).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "text"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "ERROR: Database connection failed",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://nominatim.openstreetmap.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "616320c1-d30c-4806-9465-0c59dfbd32bc",
+    "name": "Nominatim Deletable Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nominatim is an open-source search engine for OpenStreetMap data. It can be\nused to find places by name and address (forward geocoding) and to derive\naddress information from coordinates (reverse geocoding). Nominatim is\ndeveloped under the BSD 2-Clause license by the OpenStreetMap Search team\n(osm-search) and is hosted at https://nominatim.openstreetmap.org by the\nOpenStreetMap Foundation as a free public service.\n\nSelf-hosted deployments are common; commercial hosted Nominatim is also\navailable from MapTiler, LocationIQ, and Geocode Earth, among others.\n\nUse of the public OSMF instance is governed by the Nominatim Usage Policy:\nhttps://operations.osmfoundation.org/policies/nominatim/ — a hard limit of\nno more than 1 request per second is enforced across all your traffic, and\na meaningful HTTP User-Agent identifying your application is required.\n\n\nContact Support:\n Name: OpenStreetMap Search Team",
+      "type": "text/plain"
+    }
+  }
+}

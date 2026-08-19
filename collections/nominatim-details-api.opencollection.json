@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nominatim Deletable Details API",
+    "version": "4.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show Internal Place Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://nominatim.openstreetmap.org/details",
+            "params": [
+              {
+                "name": "osmtype",
+                "value": "",
+                "type": "query",
+                "description": "OSM object type (N=node, W=way, R=relation)."
+              },
+              {
+                "name": "osmid",
+                "value": "",
+                "type": "query",
+                "description": "OSM object ID."
+              },
+              {
+                "name": "class",
+                "value": "",
+                "type": "query",
+                "description": "Optional OSM tag key used to disambiguate between multiple places\noriginating from the same OSM object.\n"
+              },
+              {
+                "name": "place_id",
+                "value": "",
+                "type": "query",
+                "description": "Internal Nominatim place identifier. Not portable across Nominatim\ninstances.\n"
+              },
+              {
+                "name": "json_callback",
+                "value": "",
+                "type": "query",
+                "description": "Wrap JSON output in a JSONP callback."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "addressdetails",
+                "value": "",
+                "type": "query",
+                "description": "Include a breakdown of the address into elements."
+              },
+              {
+                "name": "keywords",
+                "value": "",
+                "type": "query",
+                "description": "Include name and address keywords used for indexing."
+              },
+              {
+                "name": "linkedplaces",
+                "value": "",
+                "type": "query",
+                "description": "Include details for linked places."
+              },
+              {
+                "name": "hierarchy",
+                "value": "",
+                "type": "query",
+                "description": "Include dependent POIs and addresses."
+              },
+              {
+                "name": "group_hierarchy",
+                "value": "",
+                "type": "query",
+                "description": "Group the hierarchy output by element type."
+              },
+              {
+                "name": "polygon_geojson",
+                "value": "",
+                "type": "query",
+                "description": "Output geometry as GeoJSON."
+              },
+              {
+                "name": "accept-language",
+                "value": "",
+                "type": "query",
+                "description": "Preferred language order for showing search results, in browser-style\nformat (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language\nheader.\n"
+              }
+            ]
+          },
+          "docs": "Show internal details for an object. Intended for debugging — the\nendpoint is not part of the stable API surface and the place_id is not\nportable across Nominatim installations.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

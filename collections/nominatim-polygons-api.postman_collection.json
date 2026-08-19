@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "c2815b80-e6c2-44ae-85de-10ea2950a70f",
+      "name": "Polygons",
+      "description": {
+        "content": "Problematic polygon data detected by the system.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1fba5fa-f641-4cff-86ec-c9ebe4592d36",
+          "name": "List Problematic Polygon Geometries",
+          "request": {
+            "name": "List Problematic Polygon Geometries",
+            "description": {
+              "content": "List polygons whose geometries the Nominatim importer flagged as\nbroken or otherwise problematic. Used for data quality monitoring.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "polygons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab0dd912-392b-4344-b717-4526c1166a67",
+              "name": "HTML or JSON listing of problematic polygons.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polygons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://nominatim.openstreetmap.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e0292dac-2bdb-45ed-8408-eabdf5e3b7eb",
+    "name": "Nominatim Deletable Polygons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nominatim is an open-source search engine for OpenStreetMap data. It can be\nused to find places by name and address (forward geocoding) and to derive\naddress information from coordinates (reverse geocoding). Nominatim is\ndeveloped under the BSD 2-Clause license by the OpenStreetMap Search team\n(osm-search) and is hosted at https://nominatim.openstreetmap.org by the\nOpenStreetMap Foundation as a free public service.\n\nSelf-hosted deployments are common; commercial hosted Nominatim is also\navailable from MapTiler, LocationIQ, and Geocode Earth, among others.\n\nUse of the public OSMF instance is governed by the Nominatim Usage Policy:\nhttps://operations.osmfoundation.org/policies/nominatim/ — a hard limit of\nno more than 1 request per second is enforced across all your traffic, and\na meaningful HTTP User-Agent identifying your application is required.\n\n\nContact Support:\n Name: OpenStreetMap Search Team",
+      "type": "text/plain"
+    }
+  }
+}
