@@ -6,6 +6,20 @@ description: >-
   Foundation runs a free public instance at nominatim.openstreetmap.org under a published usage policy, and the project
   is also widely self-hosted and resold by commercial providers (MapTiler, LocationIQ, Geocode Earth).
 url: https://nominatim.org/
+deliveryModel:
+  model: open-core
+  license: GPL-3.0
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
