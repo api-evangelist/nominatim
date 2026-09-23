@@ -1,33 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Nominatim Deletable Status API
-  description: 'Nominatim is an open-source search engine for OpenStreetMap data. It can be
-
-    used to find places by name and address (forward geocoding) and to derive
-
-    address information from coordinates (reverse geocoding). Nominatim is
-
-    developed under the BSD 2-Clause license by the OpenStreetMap Search team
-
-    (osm-search) and is hosted at https://nominatim.openstreetmap.org by the
-
-    OpenStreetMap Foundation as a free public service.
-
-
-    Self-hosted deployments are common; commercial hosted Nominatim is also
-
-    available from MapTiler, LocationIQ, and Geocode Earth, among others.
-
-
-    Use of the public OSMF instance is governed by the Nominatim Usage Policy:
-
-    https://operations.osmfoundation.org/policies/nominatim/ — a hard limit of
-
-    no more than 1 request per second is enforced across all your traffic, and
-
-    a meaningful HTTP User-Agent identifying your application is required.
-
-    '
+  title: Nominatim Status API
+  description: Nominatim is an open-source search engine for OpenStreetMap data.
   version: 4.5.0
   license:
     name: BSD-2-Clause
@@ -57,9 +31,7 @@ paths:
       summary: Report Service And Database Status
       description: 'Report on the state of the Nominatim service and its underlying
 
-        database. Useful for health checks.
-
-        '
+        database. Useful for health checks.'
       parameters:
       - name: format
         in: query

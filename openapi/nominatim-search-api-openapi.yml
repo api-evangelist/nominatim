@@ -1,33 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Nominatim Deletable Search API
-  description: 'Nominatim is an open-source search engine for OpenStreetMap data. It can be
-
-    used to find places by name and address (forward geocoding) and to derive
-
-    address information from coordinates (reverse geocoding). Nominatim is
-
-    developed under the BSD 2-Clause license by the OpenStreetMap Search team
-
-    (osm-search) and is hosted at https://nominatim.openstreetmap.org by the
-
-    OpenStreetMap Foundation as a free public service.
-
-
-    Self-hosted deployments are common; commercial hosted Nominatim is also
-
-    available from MapTiler, LocationIQ, and Geocode Earth, among others.
-
-
-    Use of the public OSMF instance is governed by the Nominatim Usage Policy:
-
-    https://operations.osmfoundation.org/policies/nominatim/ — a hard limit of
-
-    no more than 1 request per second is enforced across all your traffic, and
-
-    a meaningful HTTP User-Agent identifying your application is required.
-
-    '
+  title: Nominatim Search API
+  description: Nominatim is an open-source search engine for OpenStreetMap data.
   version: 4.5.0
   license:
     name: BSD-2-Clause
@@ -61,9 +35,7 @@ paths:
 
         parameters (`amenity`, `street`, `city`, `county`, `state`, `country`,
 
-        `postalcode`) — the two query styles cannot be combined.
-
-        '
+        `postalcode`) — the two query styles cannot be combined.'
       parameters:
       - $ref: '#/components/parameters/Query'
       - $ref: '#/components/parameters/Amenity'
@@ -109,36 +81,38 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   parameters:
-    Dedupe:
-      name: dedupe
+    State:
+      name: state
       in: query
-      description: Remove duplicate hits from the result set.
       schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 1
-    PolygonSVG:
-      name: polygon_svg
+        type: string
+    CountryCodes:
+      name: countrycodes
       in: query
-      description: Output geometry as SVG.
+      description: Comma-separated list of ISO 3166-1 alpha-2 country codes to limit results to.
+      schema:
+        type: string
+        example: us,ca,mx
+    PolygonKML:
+      name: polygon_kml
+      in: query
+      description: Output geometry as KML.
       schema:
         type: integer
         enum:
         - 0
         - 1
         default: 0
-    Country:
-      name: country
+    PolygonGeoJSON:
+      name: polygon_geojson
       in: query
+      description: Output geometry as GeoJSON.
       schema:
-        type: string
-    City:
-      name: city
-      in: query
-      schema:
-        type: string
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
     Format:
       name: format
       in: query
@@ -152,62 +126,23 @@ components:
         - geojson
         - geocodejson
         default: jsonv2
-    Amenity:
-      name: amenity
+    Query:
+      name: q
       in: query
-      description: Name or type of point of interest.
+      description: Free-form query string. Cannot be combined with structured query parameters.
       schema:
         type: string
-    County:
-      name: county
+        example: 135 pilkington avenue, birmingham
+    Bounded:
+      name: bounded
       in: query
+      description: When set, restrict results strictly to the viewbox.
       schema:
-        type: string
-    Postalcode:
-      name: postalcode
-      in: query
-      schema:
-        type: string
-    Viewbox:
-      name: viewbox
-      in: query
-      description: 'Bounding box `x1,y1,x2,y2` (longitudes and latitudes) used to bias
-
-        results toward a geographic area.
-
-        '
-      schema:
-        type: string
-        example: -180,-90,180,90
-    FeatureType:
-      name: featureType
-      in: query
-      description: Restrict search results to a single feature type.
-      schema:
-        type: string
+        type: integer
         enum:
-        - country
-        - state
-        - city
-        - settlement
-    CountryCodes:
-      name: countrycodes
-      in: query
-      description: Comma-separated list of ISO 3166-1 alpha-2 country codes to limit results to.
-      schema:
-        type: string
-        example: us,ca,mx
-    Layer:
-      name: layer
-      in: query
-      description: 'Restrict results to one or more feature layers. Comma-separated list of
-
-        `address`, `poi`, `railway`, `natural`, `manmade`.
-
-        '
-      schema:
-        type: string
-        example: address,poi
+        - 0
+        - 1
+        default: 0
     Email:
       name: email
       in: query
@@ -219,8 +154,25 @@ components:
       schema:
         type: string
         format: email
-    State:
-      name: state
+    JsonCallback:
+      name: json_callback
+      in: query
+      description: Wrap JSON output in a JSONP callback.
+      schema:
+        type: string
+    FeatureType:
+      name: featureType
+      in: query
+      description: Restrict search results to a single feature type.
+      schema:
+        type: string
+        enum:
+        - country
+        - state
+        - city
+        - settlement
+    County:
+      name: county
       in: query
       schema:
         type: string
@@ -233,6 +185,63 @@ components:
         minimum: 1
         maximum: 40
         default: 10
+    PolygonSVG:
+      name: polygon_svg
+      in: query
+      description: Output geometry as SVG.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Amenity:
+      name: amenity
+      in: query
+      description: Name or type of point of interest.
+      schema:
+        type: string
+    Street:
+      name: street
+      in: query
+      description: House number and street name.
+      schema:
+        type: string
+    Postalcode:
+      name: postalcode
+      in: query
+      schema:
+        type: string
+    NameDetails:
+      name: namedetails
+      in: query
+      description: Include a full list of names for the result.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    City:
+      name: city
+      in: query
+      schema:
+        type: string
+    PolygonText:
+      name: polygon_text
+      in: query
+      description: Output geometry as WKT.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Country:
+      name: country
+      in: query
+      schema:
+        type: string
     ExcludePlaceIds:
       name: exclude_place_ids
       in: query
@@ -251,69 +260,10 @@ components:
         '
       schema:
         type: string
-    NameDetails:
-      name: namedetails
+    AddressDetails:
+      name: addressdetails
       in: query
-      description: Include a full list of names for the result.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    JsonCallback:
-      name: json_callback
-      in: query
-      description: Wrap JSON output in a JSONP callback.
-      schema:
-        type: string
-    Query:
-      name: q
-      in: query
-      description: Free-form query string. Cannot be combined with structured query parameters.
-      schema:
-        type: string
-        example: 135 pilkington avenue, birmingham
-    Street:
-      name: street
-      in: query
-      description: House number and street name.
-      schema:
-        type: string
-    PolygonGeoJSON:
-      name: polygon_geojson
-      in: query
-      description: Output geometry as GeoJSON.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    ExtraTags:
-      name: extratags
-      in: query
-      description: Include additional information (Wikipedia link, opening hours, etc.).
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    PolygonKML:
-      name: polygon_kml
-      in: query
-      description: Output geometry as KML.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    Bounded:
-      name: bounded
-      in: query
-      description: When set, restrict results strictly to the viewbox.
+      description: Include a breakdown of the address into elements.
       schema:
         type: integer
         enum:
@@ -330,6 +280,16 @@ components:
         - 0
         - 1
         default: 0
+    ExtraTags:
+      name: extratags
+      in: query
+      description: Include additional information (Wikipedia link, opening hours, etc.).
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
     PolygonThreshold:
       name: polygon_threshold
       in: query
@@ -339,26 +299,38 @@ components:
         format: double
         minimum: 0
         default: 0
-    PolygonText:
-      name: polygon_text
+    Layer:
+      name: layer
       in: query
-      description: Output geometry as WKT.
+      description: 'Restrict results to one or more feature layers. Comma-separated list of
+
+        `address`, `poi`, `railway`, `natural`, `manmade`.
+
+        '
+      schema:
+        type: string
+        example: address,poi
+    Viewbox:
+      name: viewbox
+      in: query
+      description: 'Bounding box `x1,y1,x2,y2` (longitudes and latitudes) used to bias
+
+        results toward a geographic area.
+
+        '
+      schema:
+        type: string
+        example: -180,-90,180,90
+    Dedupe:
+      name: dedupe
+      in: query
+      description: Remove duplicate hits from the result set.
       schema:
         type: integer
         enum:
         - 0
         - 1
-        default: 0
-    AddressDetails:
-      name: addressdetails
-      in: query
-      description: Include a breakdown of the address into elements.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
+        default: 1
   schemas:
     Address:
       type: object

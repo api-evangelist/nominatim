@@ -1,33 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Nominatim Deletable Reverse API
-  description: 'Nominatim is an open-source search engine for OpenStreetMap data. It can be
-
-    used to find places by name and address (forward geocoding) and to derive
-
-    address information from coordinates (reverse geocoding). Nominatim is
-
-    developed under the BSD 2-Clause license by the OpenStreetMap Search team
-
-    (osm-search) and is hosted at https://nominatim.openstreetmap.org by the
-
-    OpenStreetMap Foundation as a free public service.
-
-
-    Self-hosted deployments are common; commercial hosted Nominatim is also
-
-    available from MapTiler, LocationIQ, and Geocode Earth, among others.
-
-
-    Use of the public OSMF instance is governed by the Nominatim Usage Policy:
-
-    https://operations.osmfoundation.org/policies/nominatim/ — a hard limit of
-
-    no more than 1 request per second is enforced across all your traffic, and
-
-    a meaningful HTTP User-Agent identifying your application is required.
-
-    '
+  title: Nominatim Reverse API
+  description: Nominatim is an open-source search engine for OpenStreetMap data.
   version: 4.5.0
   license:
     name: BSD-2-Clause
@@ -59,9 +33,7 @@ paths:
 
         address information. The result is the closest suitable feature for the
 
-        requested zoom level rather than a literal address for the exact point.
-
-        '
+        requested zoom level rather than a literal address for the exact point.'
       parameters:
       - $ref: '#/components/parameters/Lat'
       - $ref: '#/components/parameters/Lon'
@@ -93,10 +65,20 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   parameters:
-    PolygonSVG:
-      name: polygon_svg
+    PolygonKML:
+      name: polygon_kml
       in: query
-      description: Output geometry as SVG.
+      description: Output geometry as KML.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
       schema:
         type: integer
         enum:
@@ -116,17 +98,6 @@ components:
         - geojson
         - geocodejson
         default: jsonv2
-    Lat:
-      name: lat
-      in: query
-      required: true
-      description: Latitude of the coordinate to reverse geocode (WGS84).
-      schema:
-        type: number
-        format: double
-        minimum: -90
-        maximum: 90
-        example: 52.5487429714954
     Zoom:
       name: zoom
       in: query
@@ -142,28 +113,6 @@ components:
         minimum: 0
         maximum: 18
         default: 18
-    Layer:
-      name: layer
-      in: query
-      description: 'Restrict results to one or more feature layers. Comma-separated list of
-
-        `address`, `poi`, `railway`, `natural`, `manmade`.
-
-        '
-      schema:
-        type: string
-        example: address,poi
-    Email:
-      name: email
-      in: query
-      description: 'Email address identifying you when making high-volume requests. Required
-
-        by the OSMF usage policy at sustained traffic levels.
-
-        '
-      schema:
-        type: string
-        format: email
     Lon:
       name: lon
       in: query
@@ -175,6 +124,53 @@ components:
         minimum: -180
         maximum: 180
         example: -1.81602098644987
+    Email:
+      name: email
+      in: query
+      description: 'Email address identifying you when making high-volume requests. Required
+
+        by the OSMF usage policy at sustained traffic levels.
+
+        '
+      schema:
+        type: string
+        format: email
+    JsonCallback:
+      name: json_callback
+      in: query
+      description: Wrap JSON output in a JSONP callback.
+      schema:
+        type: string
+    PolygonSVG:
+      name: polygon_svg
+      in: query
+      description: Output geometry as SVG.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    NameDetails:
+      name: namedetails
+      in: query
+      description: Include a full list of names for the result.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonText:
+      name: polygon_text
+      in: query
+      description: Output geometry as WKT.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
     AcceptLanguage:
       name: accept-language
       in: query
@@ -187,46 +183,10 @@ components:
         '
       schema:
         type: string
-    NameDetails:
-      name: namedetails
+    AddressDetails:
+      name: addressdetails
       in: query
-      description: Include a full list of names for the result.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    JsonCallback:
-      name: json_callback
-      in: query
-      description: Wrap JSON output in a JSONP callback.
-      schema:
-        type: string
-    PolygonGeoJSON:
-      name: polygon_geojson
-      in: query
-      description: Output geometry as GeoJSON.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    ExtraTags:
-      name: extratags
-      in: query
-      description: Include additional information (Wikipedia link, opening hours, etc.).
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    PolygonKML:
-      name: polygon_kml
-      in: query
-      description: Output geometry as KML.
+      description: Include a breakdown of the address into elements.
       schema:
         type: integer
         enum:
@@ -243,6 +203,27 @@ components:
         - 0
         - 1
         default: 0
+    ExtraTags:
+      name: extratags
+      in: query
+      description: Include additional information (Wikipedia link, opening hours, etc.).
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Lat:
+      name: lat
+      in: query
+      required: true
+      description: Latitude of the coordinate to reverse geocode (WGS84).
+      schema:
+        type: number
+        format: double
+        minimum: -90
+        maximum: 90
+        example: 52.5487429714954
     PolygonThreshold:
       name: polygon_threshold
       in: query
@@ -252,26 +233,17 @@ components:
         format: double
         minimum: 0
         default: 0
-    PolygonText:
-      name: polygon_text
+    Layer:
+      name: layer
       in: query
-      description: Output geometry as WKT.
+      description: 'Restrict results to one or more feature layers. Comma-separated list of
+
+        `address`, `poi`, `railway`, `natural`, `manmade`.
+
+        '
       schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    AddressDetails:
-      name: addressdetails
-      in: query
-      description: Include a breakdown of the address into elements.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
+        type: string
+        example: address,poi
   schemas:
     Address:
       type: object

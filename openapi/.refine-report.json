@@ -1,13 +1,7 @@
 {
   "provider": "nominatim",
   "sources": [
-    "nominatim-deletable-api-openapi.yml",
-    "nominatim-details-api-openapi.yml",
-    "nominatim-lookup-api-openapi.yml",
-    "nominatim-polygons-api-openapi.yml",
-    "nominatim-reverse-api-openapi.yml",
-    "nominatim-search-api-openapi.yml",
-    "nominatim-status-api-openapi.yml"
+    "_original/nominatim-openapi.yml"
   ],
   "outputs": [
     "nominatim-deletable-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "nominatim-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "nominatim-deletable-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nominatim-details-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nominatim-lookup-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nominatim-polygons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nominatim-reverse-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nominatim-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nominatim-status-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
