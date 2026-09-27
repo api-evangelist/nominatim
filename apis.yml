@@ -48,7 +48,7 @@ tags:
   - OpenStreetMap
   - Maps
   - Location Services
-  - Open-Source
+  - Open Source
   - Public APIs
 tags_raw:
   - Geocoding
@@ -57,6 +57,7 @@ tags_raw:
   - LocationServices
   - OpenSource
   - Public APIs
+  - Open-Source
 apis:
 - aid: nominatim:nominatim-deletable-api
   name: Nominatim Deletable API

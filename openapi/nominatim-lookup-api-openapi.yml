@@ -72,6 +72,26 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   parameters:
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonKML:
+      name: polygon_kml
+      in: query
+      description: Output geometry as KML.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
     AcceptLanguage:
       name: accept-language
       in: query
@@ -94,16 +114,6 @@ components:
         - 0
         - 1
         default: 0
-    PolygonText:
-      name: polygon_text
-      in: query
-      description: Output geometry as WKT.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
     Debug:
       name: debug
       in: query
@@ -114,20 +124,10 @@ components:
         - 0
         - 1
         default: 0
-    ExtraTags:
-      name: extratags
+    PolygonSVG:
+      name: polygon_svg
       in: query
-      description: Include additional information (Wikipedia link, opening hours, etc.).
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    PolygonKML:
-      name: polygon_kml
-      in: query
-      description: Output geometry as KML.
+      description: Output geometry as SVG.
       schema:
         type: integer
         enum:
@@ -143,29 +143,6 @@ components:
         format: double
         minimum: 0
         default: 0
-    Format:
-      name: format
-      in: query
-      description: Output format.
-      schema:
-        type: string
-        enum:
-        - xml
-        - json
-        - jsonv2
-        - geojson
-        - geocodejson
-        default: jsonv2
-    PolygonGeoJSON:
-      name: polygon_geojson
-      in: query
-      description: Output geometry as GeoJSON.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
     Email:
       name: email
       in: query
@@ -177,10 +154,10 @@ components:
       schema:
         type: string
         format: email
-    PolygonSVG:
-      name: polygon_svg
+    ExtraTags:
+      name: extratags
       in: query
-      description: Output geometry as SVG.
+      description: Include additional information (Wikipedia link, opening hours, etc.).
       schema:
         type: integer
         enum:
@@ -197,67 +174,36 @@ components:
         - 0
         - 1
         default: 0
+    PolygonText:
+      name: polygon_text
+      in: query
+      description: Output geometry as WKT.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Format:
+      name: format
+      in: query
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        - jsonv2
+        - geojson
+        - geocodejson
+        default: jsonv2
     JsonCallback:
       name: json_callback
       in: query
       description: Wrap JSON output in a JSONP callback.
       schema:
         type: string
-  responses:
-    TooManyRequests:
-      description: 'Rate limit exceeded. The public Nominatim instance enforces a hard
-
-        ceiling of 1 request per second across all your traffic. See
-
-        https://operations.osmfoundation.org/policies/nominatim/.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Address:
-      type: object
-      description: Structured address breakdown for a place.
-      properties:
-        house_number:
-          type: string
-        road:
-          type: string
-        neighbourhood:
-          type: string
-        suburb:
-          type: string
-        city:
-          type: string
-        town:
-          type: string
-        village:
-          type: string
-        municipality:
-          type: string
-        county:
-          type: string
-        state_district:
-          type: string
-        state:
-          type: string
-        postcode:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-          description: ISO 3166-1 alpha-2 country code, lowercase.
-      additionalProperties:
-        type: string
     Place:
       type: object
       description: A single Nominatim place result.
@@ -341,3 +287,57 @@ components:
               type: integer
             message:
               type: string
+    Address:
+      type: object
+      description: Structured address breakdown for a place.
+      properties:
+        house_number:
+          type: string
+        road:
+          type: string
+        neighbourhood:
+          type: string
+        suburb:
+          type: string
+        city:
+          type: string
+        town:
+          type: string
+        village:
+          type: string
+        municipality:
+          type: string
+        county:
+          type: string
+        state_district:
+          type: string
+        state:
+          type: string
+        postcode:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code, lowercase.
+      additionalProperties:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: 'Rate limit exceeded. The public Nominatim instance enforces a hard
+
+        ceiling of 1 request per second across all your traffic. See
+
+        https://operations.osmfoundation.org/policies/nominatim/.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
