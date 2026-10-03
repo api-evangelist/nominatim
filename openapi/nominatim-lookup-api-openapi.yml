@@ -72,20 +72,21 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   parameters:
-    PolygonGeoJSON:
-      name: polygon_geojson
+    Email:
+      name: email
       in: query
-      description: Output geometry as GeoJSON.
+      description: 'Email address identifying you when making high-volume requests. Required
+
+        by the OSMF usage policy at sustained traffic levels.
+
+        '
       schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    PolygonKML:
-      name: polygon_kml
+        type: string
+        format: email
+    NameDetails:
+      name: namedetails
       in: query
-      description: Output geometry as KML.
+      description: Include a full list of names for the result.
       schema:
         type: integer
         enum:
@@ -104,20 +105,68 @@ components:
         '
       schema:
         type: string
-    AddressDetails:
-      name: addressdetails
+    PolygonText:
+      name: polygon_text
       in: query
-      description: Include a breakdown of the address into elements.
+      description: Output geometry as WKT.
       schema:
         type: integer
         enum:
         - 0
         - 1
         default: 0
-    Debug:
-      name: debug
+    PolygonThreshold:
+      name: polygon_threshold
       in: query
-      description: Return verbose HTML output containing internal debugging information.
+      description: Simplification tolerance for polygon output, in degrees.
+      schema:
+        type: number
+        format: double
+        minimum: 0
+        default: 0
+    PolygonKML:
+      name: polygon_kml
+      in: query
+      description: Output geometry as KML.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    JsonCallback:
+      name: json_callback
+      in: query
+      description: Wrap JSON output in a JSONP callback.
+      schema:
+        type: string
+    Format:
+      name: format
+      in: query
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        - jsonv2
+        - geojson
+        - geocodejson
+        default: jsonv2
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    AddressDetails:
+      name: addressdetails
+      in: query
+      description: Include a breakdown of the address into elements.
       schema:
         type: integer
         enum:
@@ -134,26 +183,16 @@ components:
         - 0
         - 1
         default: 0
-    PolygonThreshold:
-      name: polygon_threshold
+    Debug:
+      name: debug
       in: query
-      description: Simplification tolerance for polygon output, in degrees.
+      description: Return verbose HTML output containing internal debugging information.
       schema:
-        type: number
-        format: double
-        minimum: 0
+        type: integer
+        enum:
+        - 0
+        - 1
         default: 0
-    Email:
-      name: email
-      in: query
-      description: 'Email address identifying you when making high-volume requests. Required
-
-        by the OSMF usage policy at sustained traffic levels.
-
-        '
-      schema:
-        type: string
-        format: email
     ExtraTags:
       name: extratags
       in: query
@@ -164,46 +203,42 @@ components:
         - 0
         - 1
         default: 0
-    NameDetails:
-      name: namedetails
-      in: query
-      description: Include a full list of names for the result.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    PolygonText:
-      name: polygon_text
-      in: query
-      description: Output geometry as WKT.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    Format:
-      name: format
-      in: query
-      description: Output format.
-      schema:
-        type: string
-        enum:
-        - xml
-        - json
-        - jsonv2
-        - geojson
-        - geocodejson
-        default: jsonv2
-    JsonCallback:
-      name: json_callback
-      in: query
-      description: Wrap JSON output in a JSONP callback.
-      schema:
-        type: string
   schemas:
+    Address:
+      type: object
+      description: Structured address breakdown for a place.
+      properties:
+        house_number:
+          type: string
+        road:
+          type: string
+        neighbourhood:
+          type: string
+        suburb:
+          type: string
+        city:
+          type: string
+        town:
+          type: string
+        village:
+          type: string
+        municipality:
+          type: string
+        county:
+          type: string
+        state_district:
+          type: string
+        state:
+          type: string
+        postcode:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code, lowercase.
+      additionalProperties:
+        type: string
     Place:
       type: object
       description: A single Nominatim place result.
@@ -287,41 +322,6 @@ components:
               type: integer
             message:
               type: string
-    Address:
-      type: object
-      description: Structured address breakdown for a place.
-      properties:
-        house_number:
-          type: string
-        road:
-          type: string
-        neighbourhood:
-          type: string
-        suburb:
-          type: string
-        city:
-          type: string
-        town:
-          type: string
-        village:
-          type: string
-        municipality:
-          type: string
-        county:
-          type: string
-        state_district:
-          type: string
-        state:
-          type: string
-        postcode:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-          description: ISO 3166-1 alpha-2 country code, lowercase.
-      additionalProperties:
-        type: string
   responses:
     BadRequest:
       description: Invalid request parameters.

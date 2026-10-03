@@ -128,6 +128,13 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     AcceptLanguage:
       name: accept-language
@@ -141,16 +148,6 @@ components:
         '
       schema:
         type: string
-    PolygonGeoJSON:
-      name: polygon_geojson
-      in: query
-      description: Output geometry as GeoJSON.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
     Format:
       name: format
       in: query
@@ -170,17 +167,17 @@ components:
       description: Wrap JSON output in a JSONP callback.
       schema:
         type: string
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
     PlaceDetails:
       type: object
       description: Verbose internal details for a single place.
@@ -263,10 +260,13 @@ components:
           type: array
           items:
             type: object
-  responses:
-    BadRequest:
-      description: Invalid request parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
