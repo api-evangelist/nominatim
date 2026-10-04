@@ -128,56 +128,17 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
-  responses:
-    BadRequest:
-      description: Invalid request parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    AcceptLanguage:
-      name: accept-language
-      in: query
-      description: 'Preferred language order for showing search results, in browser-style
-
-        format (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language
-
-        header.
-
-        '
-      schema:
-        type: string
-    Format:
-      name: format
-      in: query
-      description: Output format.
-      schema:
-        type: string
-        enum:
-        - xml
-        - json
-        - jsonv2
-        - geojson
-        - geocodejson
-        default: jsonv2
-    JsonCallback:
-      name: json_callback
-      in: query
-      description: Wrap JSON output in a JSONP callback.
-      schema:
-        type: string
-    PolygonGeoJSON:
-      name: polygon_geojson
-      in: query
-      description: Output geometry as GeoJSON.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
     PlaceDetails:
       type: object
       description: Verbose internal details for a single place.
@@ -260,13 +221,52 @@ components:
           type: array
           items:
             type: object
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
+  parameters:
+    JsonCallback:
+      name: json_callback
+      in: query
+      description: Wrap JSON output in a JSONP callback.
+      schema:
+        type: string
+    AcceptLanguage:
+      name: accept-language
+      in: query
+      description: 'Preferred language order for showing search results, in browser-style
+
+        format (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language
+
+        header.
+
+        '
+      schema:
+        type: string
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Format:
+      name: format
+      in: query
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        - jsonv2
+        - geojson
+        - geocodejson
+        default: jsonv2
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

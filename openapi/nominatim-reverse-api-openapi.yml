@@ -64,7 +64,216 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
+  parameters:
+    JsonCallback:
+      name: json_callback
+      in: query
+      description: Wrap JSON output in a JSONP callback.
+      schema:
+        type: string
+    PolygonKML:
+      name: polygon_kml
+      in: query
+      description: Output geometry as KML.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Lat:
+      name: lat
+      in: query
+      required: true
+      description: Latitude of the coordinate to reverse geocode (WGS84).
+      schema:
+        type: number
+        format: double
+        minimum: -90
+        maximum: 90
+        example: 52.5487429714954
+    PolygonText:
+      name: polygon_text
+      in: query
+      description: Output geometry as WKT.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonThreshold:
+      name: polygon_threshold
+      in: query
+      description: Simplification tolerance for polygon output, in degrees.
+      schema:
+        type: number
+        format: double
+        minimum: 0
+        default: 0
+    AcceptLanguage:
+      name: accept-language
+      in: query
+      description: 'Preferred language order for showing search results, in browser-style
+
+        format (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language
+
+        header.
+
+        '
+      schema:
+        type: string
+    Layer:
+      name: layer
+      in: query
+      description: 'Restrict results to one or more feature layers. Comma-separated list of
+
+        `address`, `poi`, `railway`, `natural`, `manmade`.
+
+        '
+      schema:
+        type: string
+        example: address,poi
+    NameDetails:
+      name: namedetails
+      in: query
+      description: Include a full list of names for the result.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Email:
+      name: email
+      in: query
+      description: 'Email address identifying you when making high-volume requests. Required
+
+        by the OSMF usage policy at sustained traffic levels.
+
+        '
+      schema:
+        type: string
+        format: email
+    AddressDetails:
+      name: addressdetails
+      in: query
+      description: Include a breakdown of the address into elements.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Format:
+      name: format
+      in: query
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+        - jsonv2
+        - geojson
+        - geocodejson
+        default: jsonv2
+    Debug:
+      name: debug
+      in: query
+      description: Return verbose HTML output containing internal debugging information.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Lon:
+      name: lon
+      in: query
+      required: true
+      description: Longitude of the coordinate to reverse geocode (WGS84).
+      schema:
+        type: number
+        format: double
+        minimum: -180
+        maximum: 180
+        example: -1.81602098644987
+    ExtraTags:
+      name: extratags
+      in: query
+      description: Include additional information (Wikipedia link, opening hours, etc.).
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    PolygonGeoJSON:
+      name: polygon_geojson
+      in: query
+      description: Output geometry as GeoJSON.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+    Zoom:
+      name: zoom
+      in: query
+      description: 'Level of administrative detail required. 3=country, 5=state, 8=county,
+
+        10=city, 12=town/borough, 13=village/suburb, 14=neighbourhood, 15=any
+
+        settlement, 16=major streets, 17=major and minor streets, 18=building.
+
+        '
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 18
+        default: 18
+    PolygonSVG:
+      name: polygon_svg
+      in: query
+      description: Output geometry as SVG.
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        default: 0
+  responses:
+    TooManyRequests:
+      description: 'Rate limit exceeded. The public Nominatim instance enforces a hard
+
+        ceiling of 1 request per second across all your traffic. See
+
+        https://operations.osmfoundation.org/policies/nominatim/.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
     Address:
       type: object
       description: Structured address breakdown for a place.
@@ -100,16 +309,6 @@ components:
           description: ISO 3166-1 alpha-2 country code, lowercase.
       additionalProperties:
         type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
     Place:
       type: object
       description: A single Nominatim place result.
@@ -183,202 +382,3 @@ components:
         geojson:
           type: object
           description: GeoJSON geometry of the result (when polygon_geojson=1).
-  parameters:
-    Layer:
-      name: layer
-      in: query
-      description: 'Restrict results to one or more feature layers. Comma-separated list of
-
-        `address`, `poi`, `railway`, `natural`, `manmade`.
-
-        '
-      schema:
-        type: string
-        example: address,poi
-    NameDetails:
-      name: namedetails
-      in: query
-      description: Include a full list of names for the result.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    PolygonKML:
-      name: polygon_kml
-      in: query
-      description: Output geometry as KML.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    Zoom:
-      name: zoom
-      in: query
-      description: 'Level of administrative detail required. 3=country, 5=state, 8=county,
-
-        10=city, 12=town/borough, 13=village/suburb, 14=neighbourhood, 15=any
-
-        settlement, 16=major streets, 17=major and minor streets, 18=building.
-
-        '
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 18
-        default: 18
-    AcceptLanguage:
-      name: accept-language
-      in: query
-      description: 'Preferred language order for showing search results, in browser-style
-
-        format (e.g. `en-US,en;q=0.5`). Overrides the HTTP Accept-Language
-
-        header.
-
-        '
-      schema:
-        type: string
-    PolygonThreshold:
-      name: polygon_threshold
-      in: query
-      description: Simplification tolerance for polygon output, in degrees.
-      schema:
-        type: number
-        format: double
-        minimum: 0
-        default: 0
-    Format:
-      name: format
-      in: query
-      description: Output format.
-      schema:
-        type: string
-        enum:
-        - xml
-        - json
-        - jsonv2
-        - geojson
-        - geocodejson
-        default: jsonv2
-    Email:
-      name: email
-      in: query
-      description: 'Email address identifying you when making high-volume requests. Required
-
-        by the OSMF usage policy at sustained traffic levels.
-
-        '
-      schema:
-        type: string
-        format: email
-    JsonCallback:
-      name: json_callback
-      in: query
-      description: Wrap JSON output in a JSONP callback.
-      schema:
-        type: string
-    PolygonSVG:
-      name: polygon_svg
-      in: query
-      description: Output geometry as SVG.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    Debug:
-      name: debug
-      in: query
-      description: Return verbose HTML output containing internal debugging information.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    ExtraTags:
-      name: extratags
-      in: query
-      description: Include additional information (Wikipedia link, opening hours, etc.).
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    Lat:
-      name: lat
-      in: query
-      required: true
-      description: Latitude of the coordinate to reverse geocode (WGS84).
-      schema:
-        type: number
-        format: double
-        minimum: -90
-        maximum: 90
-        example: 52.5487429714954
-    PolygonText:
-      name: polygon_text
-      in: query
-      description: Output geometry as WKT.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    AddressDetails:
-      name: addressdetails
-      in: query
-      description: Include a breakdown of the address into elements.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    PolygonGeoJSON:
-      name: polygon_geojson
-      in: query
-      description: Output geometry as GeoJSON.
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        default: 0
-    Lon:
-      name: lon
-      in: query
-      required: true
-      description: Longitude of the coordinate to reverse geocode (WGS84).
-      schema:
-        type: number
-        format: double
-        minimum: -180
-        maximum: 180
-        example: -1.81602098644987
-  responses:
-    TooManyRequests:
-      description: 'Rate limit exceeded. The public Nominatim instance enforces a hard
-
-        ceiling of 1 request per second across all your traffic. See
-
-        https://operations.osmfoundation.org/policies/nominatim/.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
