@@ -1,4 +1,4 @@
-# Nominatim (nominatim)
+# Nominatim
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,94 +66,172 @@
 
 Nominatim is an open-source (BSD-2-Clause) search engine for OpenStreetMap data, supporting forward geocoding (address to coordinates), reverse geocoding (coordinates to address), and address lookup by OSM ID. The OpenStreetMap Foundation runs a free public instance at nominatim.openstreetmap.org under a published usage policy, and the project is also widely self-hosted and resold by commercial providers (MapTiler, LocationIQ, Geocode Earth).
 
-**APIs.json:** [https://nominatim.org/](https://nominatim.org/)
+**Areas:** Geocoding · OpenStreetMap · Maps · Location Services · Open Source · Public APIs
 
-## Tags
+## Nominatim on APIs.io
 
-- Geocoding
-- OpenStreetMap
-- Maps
-- LocationServices
-- OpenSource
-- Public APIs
+Everything profiled for Nominatim is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/nominatim/](https://apis.io/providers/nominatim/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-29
+- [Nominatim Deletable API](https://apis.io/apis/nominatim/nominatim-deletable-api/) — Objects removed from OpenStreetMap but retained in Nominatim.
+- [Nominatim Details API](https://apis.io/apis/nominatim/nominatim-details-api/) — Internal place details, intended for debugging.
+- [Nominatim Lookup API](https://apis.io/apis/nominatim/nominatim-lookup-api/) — Look up address details for OSM objects by their OSM ID.
+- [Nominatim Polygons API](https://apis.io/apis/nominatim/nominatim-polygons-api/) — Problematic polygon data detected by the system.
+- [Nominatim Reverse API](https://apis.io/apis/nominatim/nominatim-reverse-api/) — Reverse geocoding — find the closest OSM object to a coordinate.
+- [Nominatim Search API](https://apis.io/apis/nominatim/nominatim-search-api/) — Forward geocoding — search OSM objects by name or address.
+- [Nominatim Status API](https://apis.io/apis/nominatim/nominatim-status-api/) — Service and database status reporting.
 
-## APIs
+### Published properties
 
-### Nominatim API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-HTTP API surface implemented by Nominatim. The same surface is exposed by the OSMF public instance, self-hosted Nominatim deployments, and most commercial Nominatim-compatible providers.
+#### Agentic access (1)
 
-- **Human URL:** [https://nominatim.org/release-docs/develop/api/Overview/](https://nominatim.org/release-docs/develop/api/Overview/)
-- **Base URL:** `https://nominatim.openstreetmap.org`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Nominatim Agentic Access](https://apis.io/agentic-access/nominatim/nominatim-agentic-access/)
 
-- Geocoding
-- Search
-- Reverse
-- Lookup
+#### JSON Schema (4)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://nominatim.org/release-docs/develop/api/Overview/)
-- [API Reference](https://nominatim.org/release-docs/develop/api/Search/)
-- [OpenAPI](openapi/nominatim-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/nominatim.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/nominatim.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/nominatim-place-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/nominatim-address-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/nominatim-place-details-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/nominatim-status-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/nominatim-place-structure.json)
-- [JSON Structure](json-structure/nominatim-address-structure.json)
-- [JSON Structure](json-structure/nominatim-status-structure.json)
-- [JSON-LD](json-ld/nominatim-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Example](examples/nominatim-search-example.json)
-- [Example](examples/nominatim-reverse-example.json)
-- [Example](examples/nominatim-lookup-example.json)
-- [Example](examples/nominatim-details-example.json)
-- [Example](examples/nominatim-status-example.json)
-- [Example](examples/nominatim-place-example.json)
-- [Example](examples/nominatim-address-example.json)
-- [Rate Limits](rate-limits/nominatim-rate-limits.yml)
-- [Plans](plans/nominatim-plans-pricing.yml)
-- [SDK](https://pypi.org/project/nominatim-api/)
-- [SDK](https://pypi.org/project/geopy/)
+- [Address](https://apis.io/schemas/nominatim/nominatim-address/)
+- [Place](https://apis.io/schemas/nominatim/nominatim-place/)
+- [PlaceDetails](https://apis.io/schemas/nominatim/nominatim-place-details/)
+- [Status](https://apis.io/schemas/nominatim/nominatim-status/)
 
-## Common Properties
+#### JSON Structure (3)
+
+Data models expressed in JSON Structure.
+
+- [Nominatim Address Structure](https://apis.io/json-structure/nominatim/nominatim-address-structure/)
+- [Nominatim Place Structure](https://apis.io/json-structure/nominatim/nominatim-place-structure/)
+- [Nominatim Status Structure](https://apis.io/json-structure/nominatim/nominatim-status-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Nominatim Context](https://apis.io/jsonld/nominatim/nominatim-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Nominatim Vocabulary](https://apis.io/vocabularies/nominatim/nominatim-vocabulary/)
+
+#### Examples (7)
+
+Example requests and responses.
+
+- [Nominatim Address Example](https://apis.io/examples/nominatim/nominatim-address-example/)
+- [Nominatim Details Example](https://apis.io/examples/nominatim/nominatim-details-example/)
+- [Nominatim Lookup Example](https://apis.io/examples/nominatim/nominatim-lookup-example/)
+- [Nominatim Place Example](https://apis.io/examples/nominatim/nominatim-place-example/)
+- [Nominatim Reverse Example](https://apis.io/examples/nominatim/nominatim-reverse-example/)
+- [Nominatim Search Example](https://apis.io/examples/nominatim/nominatim-search-example/)
+- [Nominatim Status Example](https://apis.io/examples/nominatim/nominatim-status-example/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Nominatim API](https://apis.io/collections/nominatim/open-nominatim/)
+- [Nominatim Deletable API](https://apis.io/collections/nominatim/open-nominatim-deletable-api/)
+- [Nominatim Deletable Details API](https://apis.io/collections/nominatim/open-nominatim-details-api/)
+- [Nominatim Deletable Lookup API](https://apis.io/collections/nominatim/open-nominatim-lookup-api/)
+- [Nominatim Deletable Polygons API](https://apis.io/collections/nominatim/open-nominatim-polygons-api/)
+- [Nominatim Deletable Reverse API](https://apis.io/collections/nominatim/open-nominatim-reverse-api/)
+- [Nominatim Deletable Search API](https://apis.io/collections/nominatim/open-nominatim-search-api/)
+- [Nominatim Deletable Status API](https://apis.io/collections/nominatim/open-nominatim-status-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Nominatim — jsonschema rules](https://apis.io/rules/nominatim/nominatim-jsonschema-spectral-rules/)
+- [Nominatim API Rules](https://apis.io/rules/nominatim/nominatim-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Nominatim Domain Security](https://apis.io/security/nominatim/nominatim-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Nominatim Plans Pricing](https://apis.io/plans/nominatim/nominatim-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Nominatim Rate Limits](https://apis.io/rate-limits/nominatim/nominatim-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://nominatim.org/)
 - [Documentation](https://nominatim.org/release-docs/develop/)
-- [GitHub Organization](https://github.com/osm-search)
-- [GitHub Repository](https://github.com/osm-search/Nominatim)
-- [GitHub Repository](https://github.com/osm-search/nominatim-ui)
-- [GitHub Repository](https://github.com/osm-search/Nominatim-Data-Analyser)
-- [GitHub Repository](https://github.com/osm-search/wikipedia-wikidata)
-- [GitHub Repository](https://github.com/osm-search/TIGER-data)
-- [GitHub Repository](https://github.com/osm-search/gb-postcode-data)
-- [GitHub Repository](https://github.com/osm-search/country-grid-data)
-- [GitHub Repository](https://github.com/osm-search/secondary-importance)
-- [Terms of Service](https://operations.osmfoundation.org/policies/nominatim/)
-- [Rate Limits](rate-limits/nominatim-rate-limits.yml)
-- [Plans](plans/nominatim-plans-pricing.yml)
-- [Vocabulary](vocabulary/nominatim-vocabulary.yml)
-- [Spectral Rules](rules/nominatim-rules.yml)
-- [Tools](https://github.com/NERVsystems/osmmcp)
-- [Tools](https://github.com/geocoding-ai/mcp)
-- [Tools](https://github.com/X-McKay/geocode-mcp)
-- [Tools](https://github.com/jagan-shanmugam/open-streetmap-mcp)
-- [Tools](https://github.com/sparkfabrik/nominatim-openapi)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [Blog](https://nominatim.org/feed.xml)
+- [Terms of service](https://operations.osmfoundation.org/policies/nominatim/)
+- [GitHub](https://github.com/osm-search)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 42.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 59.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 15.8 |
+
+**Agent readiness 19.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 14.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/nominatim/](https://apis.io/providers/nominatim/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Nominatim: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/nominatim/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
